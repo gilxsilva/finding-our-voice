@@ -7,7 +7,7 @@ body {
 
 header {
     background-color: #503016;
-    color: #fff;
+    color: #ffffff;
     padding: 1rem 0;
     text-align: center;
 }
@@ -28,6 +28,11 @@ nav a {
     color: #503016;
     font-weight: bold;
     font-size: 1.2rem;
+}
+
+footer a {
+    color: #FFC107;
+    text-decoration: none;
 }
 
 nav a:hover {
@@ -78,17 +83,46 @@ nav a:hover {
     color: #503016;
 }
 
+/* ------------- Mission Statement ---------------- */
+.mission-statement {
+    text-align: center;
+    padding: 2rem;
+    background-color: #ffffff;
+    color: #503016;
+    position: relative;
+}
+
+.mission-statement h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.mission-statement h2 span {
+    background-color: #FFC107;
+    padding: 0.2rem 0.5rem;
+    border-radius: 5px;
+}
+
+.mission-statement p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: #503016;
+}
+
+.mission-statement .illustration {
+    width: 150px;
+    margin-top: 1rem;
+}
+
+/* ------------- Footer ---------------- */
+
 footer {
     background-color: #503016;
-    color: #fff;
+    color: #ffffff;
     text-align: center;
     padding: 1rem 0;
     margin-top: 2rem;
-}
-
-footer a {
-    color: #FFC107;
-    text-decoration: none;
 }
 
 footer a:hover {
