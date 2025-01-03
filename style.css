@@ -172,8 +172,22 @@ footer {
     background-color: #503016;
     color: #fff;
     text-align: center;
-    padding: 1rem 0;
-    margin-top: 2rem;
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer .email {
+    flex: 1;
+    text-align: left;
+    margin-left: 2rem;
+}
+
+footer .social {
+    flex: 1;
+    text-align: right;
+    margin-right: 2rem;
 }
 
 footer a {
