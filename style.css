@@ -7,7 +7,7 @@ body {
 
 header {
     background-color: #503016;
-    color: #fff;
+    color: #ffffff;
     padding: 1rem 0;
     text-align: center;
 }
@@ -86,10 +86,85 @@ nav a:hover {
 
 .content {
     padding: 2rem;
-}
+    max-width: 900px;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    line-height: 1.8;}
 
 .content h2 {
+    font-size: 2.8rem;
     color: #503016;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.content h3 {
+    font-size: 2rem;
+    color: #503016;
+    margin-top: 2rem;
+}
+
+.content p {
+    font-size: 1.2rem;
+    color: #503016;
+    margin-bottom: 1.5rem;
+}
+
+.content ul {
+    margin: 1.5rem 0;
+    padding-left: 2rem;
+    list-style-type: disc;
+}
+
+.content ul li {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    color: #503016;
+}
+
+.content ul li strong {
+    color: #FFC107;
+}
+
+.involvement-option {
+    background-color: #fdf9f4;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.involvement-option h3 {
+    font-size: 1.8rem;
+    color: #503016;
+    margin-bottom: 1rem;
+}
+
+.involvement-option p {
+    font-size: 1rem;
+    color: #503016;
+    margin-bottom: 1.5rem;
+}
+
+.involvement-option a.button {
+    display: inline-block;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #FFC107;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.involvement-option a.button:hover {
+    background-color: #e6a806;
 }
 
 /* Highlight Section */
@@ -113,7 +188,7 @@ nav a:hover {
 
 .highlight a {
     text-decoration: none;
-    color: #fff;
+    color: #ffffff;
     background-color: #503016;
     padding: 0.5rem 1rem;
     border-radius: 5px;
