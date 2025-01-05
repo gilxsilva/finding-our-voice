@@ -1,48 +1,77 @@
-# Hello website!
+# Finding Our Voice Website
 
-This is a basic HTML starter project you can build on however you like. No need to save. While you develop your site, your changes will happen ✨ immediately in the preview window. On the left you'll see the files that make up your site, including HTML, JavaScript, and CSS. You can upload assets like images or audio in `assets`. The rest is up to you and your imagination. 🦄
+Welcome to the **Finding Our Voice** website repository. This project serves as an informational and interactive platform to showcase the work, mission, and impact of the Finding Our Voice initiative, which supports newcomer students in overcoming language barriers and achieving success.
 
-_Last updated: 28 Feb 2023_
+## Table of Contents
+- [Overview](#overview)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Pages](#pages)
+- [Setup Instructions](#setup-instructions)
+- [Contributing](#contributing)
+- [Contact](#contact)
 
-## What's in this project?
+## Overview
+The Finding Our Voice website is designed to:
+- Highlight the mission and values of the organization.
+- Showcase programs and initiatives aimed at empowering newcomer students.
+- Provide information on how users can get involved through volunteering, donating, and partnerships.
+- Serve as a contact point for inquiries and collaborations.
 
-← `README.md`: That's this file, where you can tell people what your cool website does and how you built it.
+## Features
+- **Homepage:** Overview of the organization's mission and impact.
+- **About Page:** Detailed information about the organization, its mission, values, and impact.
+- **Our Work Page:** Highlights programs like language workshops, teacher training, and community engagement.
+- **Get Involved Page:** Provides opportunities to contribute via volunteering, donating, and partnerships.
+- **Contact Page:** Includes a contact form and social media links for easy communication.
 
-← `index.html`: This is the main web page for your site. The HTML defines the structure and content of the page using _elements_. You'll see references in the HTML to the JS and CSS files. Try clicking the image in the center of the page!
+## Technologies Used
+- **HTML5:** For the structure of the website.
+- **CSS3:** For styling and layout.
+- **Responsive Design:** Ensures the website is accessible on various devices.
 
-← `style.css`: CSS files add styling rules to your content. The CSS applies styles to the elements in your HTML page. The style rules also make the image move when you click it.
+## Pages
+1. **Homepage (index.html):** Features the mission statement and a visually engaging hero section.
+2. **About (about.html):** Details the organization's background and values.
+3. **Our Work (our_work.html):** Highlights the programs and initiatives of the organization.
+4. **Get Involved (get_involved.html):** Outlines ways users can support the mission.
+5. **Contact (contact.html):** Provides contact information and a form for inquiries.
 
-← `script.js`: If you're feeling fancy you can add interactivity to your site with JavaScript. The code in the JavaScript file runs when the page loads, and when the visitor clicks the button you can add using the code in the TODO.
+## Setup Instructions
+To run the website locally:
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/your-repo/finding-our-voice.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd finding-our-voice
+   ```
+3. Open any `.html` file in your browser to view the website.
 
-Open each file and check out the comments (in gray) for more info.
+Alternatively, deploy the site using platforms like [Glitch](https://glitch.com/) or [Netlify](https://www.netlify.com/).
 
-## Try this next 🏗️
+## Contributing
+We welcome contributions to improve the website! If you'd like to contribute:
+1. Fork the repository.
+2. Create a feature branch:
+   ```bash
+   git checkout -b feature-name
+   ```
+3. Commit your changes:
+   ```bash
+   git commit -m "Description of changes"
+   ```
+4. Push to the branch:
+   ```bash
+   git push origin feature-name
+   ```
+5. Open a pull request.
 
-Take a look in `TODO.md` for next steps you can try out in your new site!
+## Contact
+For any questions or suggestions, feel free to contact us:
+- Email: [info@findingourvoice.org](mailto:info@findingourvoice.org)
+- LinkedIn: [Finding Our Voice](https://www.linkedin.com)
 
-___Want a minimal version of this project to build your own website? Check out [Blank Website](https://glitch.com/edit/#!/remix/glitch-blank-website)!___
-
-## Ready to share your site?
-
-Add these meta tags for SEO and social sharing between your page `<head></head>` tags, changing the values for your site:
-
-```
-<link rel="canonical" href="https://glitch-hello-website.glitch.me/" />
-<meta name="description" content="A simple website, built with Glitch. Remix it to get your own."/>
-<meta name="robots" content="index,follow" />
-<meta property="og:title" content="Hello World!" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://glitch-hello-website.glitch.me/" />
-<meta property="og:description" content="A simple website, built with Glitch. Remix it to get your own."/>
-<meta property="og:image" content="https://cdn.glitch.com/605e2a51-d45f-4d87-a285-9410ad350515%2Fhello-website-social.png?v=1616712748147"/>
-<meta name="twitter:card" content="summary" />
-```
-
-![Glitch](https://cdn.glitch.com/a9975ea6-8949-4bab-addb-8a95021dc2da%2FLogo_Color.svg?v=1602781328576)
-
-## You built this with Glitch!
-
-[Glitch](https://glitch.com) is a friendly community where millions of people come together to build web apps and websites.
-
-- Need more help? [Check out our Help Center](https://help.glitch.com/) for answers to any common questions.
-- Ready to make it official? [Become a paid Glitch member](https://glitch.com/pricing) to boost your app with private sharing, more storage and memory, domains and more.
+---
+Thank you for supporting our mission to empower newcomer students!
