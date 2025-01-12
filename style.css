@@ -131,6 +131,86 @@ nav a:hover {
     color: #FFC107;
 }
 
+/* Timeline */
+.timeline-section {
+    padding: 2rem;
+    text-align: center;
+}
+
+.timeline-section h3 {
+    font-size: 2.5rem;
+    color: #503016;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+}
+
+.timeline {
+    position: relative;
+    margin: 0 auto;
+    padding: 2rem 0;
+    max-width: 800px;
+    list-style: none;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 4px;
+    background: #FFC107;
+    transform: translateX(-50%);
+}
+
+.timeline-item {
+    position: relative;
+    margin: 2rem 0;
+    padding-left: 50%;
+    text-align: left;
+}
+
+.timeline-item:nth-child(odd) {
+    padding-left: 0;
+    padding-right: 50%;
+    text-align: right;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    background: #503016;
+    border: 4px solid #FFC107;
+    border-radius: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+.timeline-content {
+    padding: 1rem;
+    background: #fdf9f4;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 2;
+}
+
+.timeline-content h4 {
+    font-size: 1.8rem;
+    color: #503016;
+    margin-bottom: 0.5rem;
+}
+
+.timeline-content p {
+    font-size: 1.2rem;
+    color: #503016;
+}
+
+
 .involvement-option {
     background-color: #fdf9f4;
     border-radius: 10px;
