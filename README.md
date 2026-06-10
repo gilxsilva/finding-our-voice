@@ -1,77 +1,71 @@
-# Finding Our Voice Website
+# FINDING OUR VOICE
 
-Welcome to the **Finding Our Voice** website repository. This project serves as an informational and interactive platform to showcase the work, mission, and impact of the Finding Our Voice initiative, which supports newcomer students in overcoming language barriers and achieving success.
-
-## Table of Contents
-- [Overview](#overview)
-- [Features](#features)
-- [Technologies Used](#technologies-used)
-- [Pages](#pages)
-- [Setup Instructions](#setup-instructions)
-- [Contributing](#contributing)
-- [Contact](#contact)
-
-## Overview
-The Finding Our Voice website is designed to:
-- Highlight the mission and values of the organization.
-- Showcase programs and initiatives aimed at empowering newcomer students.
-- Provide information on how users can get involved through volunteering, donating, and partnerships.
-- Serve as a contact point for inquiries and collaborations.
-
-## Features
-- **Homepage:** Overview of the organization's mission and impact.
-- **About Page:** Detailed information about the organization, its mission, values, and impact.
-- **Our Work Page:** Highlights programs like language workshops, teacher training, and community engagement.
-- **Get Involved Page:** Provides opportunities to contribute via volunteering, donating, and partnerships.
-- **Contact Page:** Includes a contact form and social media links for easy communication.
-
-## Technologies Used
-- **HTML5:** For the structure of the website.
-- **CSS3:** For styling and layout.
-- **Responsive Design:** Ensures the website is accessible on various devices.
-
-## Pages
-1. **Homepage (index.html):** Features the mission statement and a visually engaging hero section.
-2. **About (about.html):** Details the organization's background and values.
-3. **Our Work (our_work.html):** Highlights the programs and initiatives of the organization.
-4. **Get Involved (get_involved.html):** Outlines ways users can support the mission.
-5. **Contact (contact.html):** Provides contact information and a form for inquiries.
-
-## Setup Instructions
-To run the website locally:
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/your-repo/finding-our-voice.git
-   ```
-2. Navigate to the project directory:
-   ```bash
-   cd finding-our-voice
-   ```
-3. Open any `.html` file in your browser to view the website.
-
-Alternatively, deploy the site using platforms like [Glitch](https://glitch.com/) or [Netlify](https://www.netlify.com/).
-
-## Contributing
-We welcome contributions to improve the website! If you'd like to contribute:
-1. Fork the repository.
-2. Create a feature branch:
-   ```bash
-   git checkout -b feature-name
-   ```
-3. Commit your changes:
-   ```bash
-   git commit -m "Description of changes"
-   ```
-4. Push to the branch:
-   ```bash
-   git push origin feature-name
-   ```
-5. Open a pull request.
-
-## Contact
-For any questions or suggestions, feel free to contact us:
-- Email: [info@findingourvoice.org](mailto:info@findingourvoice.org)
-- LinkedIn: [Finding Our Voice](https://www.linkedin.com)
+**A student-founded program at Mission High School, San Francisco.**
+Built in partnership with 826 Valencia to support newcomer immigrant, refugee, and undocumented students in learning English and navigating the U.S. education system.
 
 ---
-Thank you for supporting our mission to empower newcomer students!
+
+## Who We Are
+
+Finding Our Voice was started by students who saw a gap and decided to close it. We noticed newcomer students struggling to find their place in a new language and a new country. So we did something about it.
+
+Co-founded by **Gil Silva, Yuli, Emir, and Darwing** at Mission High School in San Francisco.
+
+**30+ students helped. $10,000 grant from Youth Funding Youth Ideas. One student-led program.**
+
+---
+
+## What's in This Repo
+
+This is the source code for the Finding Our Voice website. It's a single-page site built without any frameworks or build tools: just HTML, CSS, and a little JavaScript.
+
+```
+index.html       the whole site, all in one file
+style.css        legacy styles (kept for reference)
+script.js        legacy JS (kept for reference)
+README.md        you're reading it
+```
+
+All fonts come from Google Fonts (Barlow Condensed + Barlow). All illustrations are inline SVG. No external images, no build step.
+
+---
+
+## Running It Locally
+
+1. Clone the repo:
+   ```bash
+   git clone https://github.com/your-repo/finding-our-voice.git
+   cd finding-our-voice
+   ```
+
+2. Open `index.html` in your browser. That's it.
+
+To deploy, drag the folder into [Netlify Drop](https://app.netlify.com/drop) or push to any static host.
+
+---
+
+## Design
+
+The site uses the Mission High School color palette and draws inspiration from 826 Valencia's bold editorial style.
+
+| Token | Value | Use |
+|---|---|---|
+| Mission Gold | `#F5C132` | Headlines, accents, CTAs |
+| Bulldog Brown | `#3D2B1A` | Navbar, dark sections |
+| Warm Brown | `#7A4F2E` | Body text, labels |
+| Parchment | `#FDF6E3` | Light section backgrounds |
+
+Typography: **Barlow Condensed 800** for all headlines (all caps, tight), **Barlow 400** for body copy.
+
+---
+
+## Get Involved
+
+Want to volunteer, donate, or partner with us? Reach out:
+
+- Email: [info@findingourvoice.org](mailto:info@findingourvoice.org)
+- LinkedIn: [Finding Our Voice SF](https://www.linkedin.com/company/finding-our-voice-sf/about/)
+
+---
+
+*Founded at Mission High School, San Francisco.*
