@@ -1,1344 +1,896 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Finding Our Voice at Mission High School, San Francisco</title>
-  <meta name="description" content="A student-founded program at Mission High School supporting newcomer immigrant, refugee, and undocumented students in learning English and navigating the U.S. education system." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,700;0,800;1,800&family=Barlow:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
-
-  <style>
-    /* ─── RESET & TOKENS ────────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --gold:       #F5C132;
-      --gold-dim:   rgba(245,193,50,0.18);
-      --brown-dark: #3D2B1A;
-      --brown-mid:  #7A4F2E;
-      --parchment:  #FDF6E3;
-      --parchment2: #F7EDD4;
-      --ink:        #1A1A1A;
-      --white:      #FFFFFF;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Barlow', sans-serif;
-      background: var(--parchment);
-      color: var(--ink);
-      font-size: 18px;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    /* ─── UTILITY ───────────────────────────────────────────────── */
-    .btn-pill {
-      display: inline-block;
-      background: var(--gold);
-      color: var(--brown-dark);
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 800;
-      font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      padding: 0.65rem 1.8rem;
-      border-radius: 999px;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.15s;
-      white-space: nowrap;
-    }
-    .btn-pill:hover { background: #e8b420; transform: translateY(-2px); }
-
-    .btn-outline {
-      display: inline-block;
-      background: transparent;
-      color: var(--white);
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 800;
-      font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      padding: 0.65rem 1.8rem;
-      border-radius: 999px;
-      text-decoration: none;
-      border: 2px solid rgba(255,255,255,0.5);
-      transition: border-color 0.2s, background 0.2s;
-      white-space: nowrap;
-    }
-    .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.07); }
-
-    .eyebrow {
-      display: block;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.22em;
-      margin-bottom: 0.8rem;
-    }
-
-    /* ─── NAVBAR ────────────────────────────────────────────────── */
-    .nav {
-      position: sticky;
-      top: 0;
-      z-index: 200;
-      background: var(--brown-dark);
-      height: 68px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 2.5rem;
-      box-shadow: 0 2px 20px rgba(0,0,0,0.35);
-    }
-
-    .nav__logo {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 800;
-      font-size: 2.2rem;
-      color: var(--gold);
-      text-decoration: none;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      line-height: 1;
-    }
-    .nav__logo sup {
-      font-size: 0.6rem;
-      letter-spacing: 0.15em;
-      opacity: 0.7;
-      vertical-align: super;
-    }
-
-    .nav__links {
-      display: flex;
-      gap: 2.2rem;
-      list-style: none;
-    }
-    .nav__links a {
-      font-family: 'Barlow', sans-serif;
-      font-weight: 600;
-      font-size: 0.9rem;
-      letter-spacing: 0.04em;
-      color: rgba(255,255,255,0.78);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .nav__links a:hover { color: var(--gold); }
-
-    .nav__hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 4px;
-    }
-    .nav__hamburger span {
-      display: block;
-      width: 26px;
-      height: 2px;
-      background: var(--gold);
-      border-radius: 2px;
-      transition: all 0.3s;
-    }
-
-    .nav__drawer {
-      display: none;
-      position: absolute;
-      top: 68px;
-      left: 0;
-      right: 0;
-      background: var(--brown-dark);
-      border-top: 1px solid rgba(245,193,50,0.18);
-      padding: 1.5rem 2.5rem;
-      flex-direction: column;
-      gap: 1.1rem;
-      z-index: 199;
-    }
-    .nav__drawer.open { display: flex; }
-    .nav__drawer a {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700;
-      font-size: 1.3rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--white);
-      text-decoration: none;
-      padding: 0.3rem 0;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-    .nav__drawer a:last-child { border-bottom: none; }
-
-    /* ─── HERO ──────────────────────────────────────────────────── */
-    .hero {
-      background: var(--brown-dark);
-      min-height: calc(100vh - 68px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      padding: 5rem 2rem 5rem;
-    }
-
-    /* subtle dot-grid texture */
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: radial-gradient(circle, rgba(245,193,50,0.12) 1px, transparent 1px);
-      background-size: 36px 36px;
-      pointer-events: none;
-    }
-
-    .hero__content {
-      position: relative;
-      z-index: 2;
-      max-width: 960px;
-      width: 100%;
-    }
-
-    .hero__headline-wrap {
-      position: relative;
-      display: inline-block;
-    }
-
-    .hero__headline {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 800;
-      font-size: clamp(5.5rem, 20vw, 16rem);
-      line-height: 0.87;
-      text-transform: uppercase;
-      letter-spacing: -0.01em;
-      margin-bottom: 2.2rem;
-    }
-    .hero__headline .g { color: var(--gold); display: block; }
-    .hero__headline .w { color: var(--white); display: block; }
-
-    /* Speech bubble accent — top-right of headline block */
-    .hero__bubble {
-      position: absolute;
-      top: -28px;
-      right: -70px;
-      width: 100px;
-      pointer-events: none;
-    }
-
-    /* Star accent — bottom-left */
-    .hero__star {
-      position: absolute;
-      bottom: 10px;
-      left: -50px;
-      width: 60px;
-      pointer-events: none;
-      opacity: 0.8;
-    }
-
-    .hero__sub {
-      color: rgba(255,255,255,0.78);
-      font-size: clamp(1rem, 2vw, 1.2rem);
-      max-width: 520px;
-      margin: 0 auto 2.8rem;
-      line-height: 1.55;
-    }
-
-    .hero__btns {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    /* background squiggle arcs */
-    .hero__arcs {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      opacity: 0.05;
-    }
-
-    /* ─── IMPACT STRIP ──────────────────────────────────────────── */
-    .impact {
-      background: var(--parchment);
-      padding: 5.5rem 2rem;
-      border-top: 4px solid var(--brown-dark);
-      border-bottom: 4px solid var(--brown-dark);
-    }
-
-    .impact__grid {
-      max-width: 900px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-      text-align: center;
-    }
-
-    .impact__item { position: relative; }
-    .impact__item + .impact__item::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 15%; bottom: 15%;
-      width: 2px;
-      background: repeating-linear-gradient(to bottom, var(--brown-mid) 0, var(--brown-mid) 5px, transparent 5px, transparent 10px);
-    }
-
-    .impact__num {
-      display: block;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 800;
-      font-size: clamp(4rem, 11vw, 9rem);
-      line-height: 1;
-      color: var(--gold);
-      -webkit-text-stroke: 3px var(--brown-dark);
-    }
-
-    .impact__label {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700;
-      font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--brown-mid);
-      margin-top: 0.4rem;
-      display: block;
-      line-height: 1.35;
-    }
-    .impact__label small {
-      display: block;
-      font-size: 0.75rem;
-      letter-spacing: 0.06em;
-      opacity: 0.75;
-      margin-top: 0.15rem;
-    }
-
-    /* ─── MISSION ───────────────────────────────────────────────── */
-    .mission {
-      background: var(--brown-dark);
-      padding: 7rem 2rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .mission::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: radial-gradient(circle at 80% 20%, rgba(245,193,50,0.06) 0, transparent 50%),
-                        radial-gradient(circle at 20% 80%, rgba(245,193,50,0.06) 0, transparent 50%);
-      pointer-events: none;
-    }
-
-    .mission__inner {
-      max-width: 860px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 1;
-    }
-
-    .mission__text {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 800;
-      font-size: clamp(2rem, 5vw, 4rem);
-      line-height: 1.08;
-      color: var(--white);
-      text-transform: uppercase;
-    }
-
-    .mission__highlight {
-      color: var(--gold);
-      position: relative;
-      display: inline-block;
-      white-space: nowrap;
-    }
-    .mission__highlight svg {
-      position: absolute;
-      bottom: -10px;
-      left: -4px;
-      width: calc(100% + 8px);
-      height: 16px;
-      pointer-events: none;
-    }
-
-    /* floating pencil */
-    .mission__pencil {
-      position: absolute;
-      bottom: 2rem;
-      right: 3rem;
-      width: 56px;
-      transform: rotate(18deg);
-      opacity: 0.65;
-      pointer-events: none;
-    }
-
-    /* ─── ORIGIN STORY ──────────────────────────────────────────── */
-    .story {
-      background: var(--parchment);
-      padding: 6.5rem 2rem;
-    }
-
-    .story__inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: start;
-    }
-
-    .story__headline {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 800;
-      font-size: clamp(2rem, 4vw, 3.4rem);
-      line-height: 0.93;
-      text-transform: uppercase;
-      color: var(--brown-dark);
-      margin-bottom: 2rem;
-    }
-
-    .story__body p {
-      font-size: 1rem;
-      color: var(--brown-mid);
-      margin-bottom: 1.1rem;
-      line-height: 1.75;
-    }
-    .story__body strong { color: var(--brown-dark); }
-
-    .story__founders {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 1.8rem;
-    }
-    .founder-chip {
-      background: var(--gold);
-      color: var(--brown-dark);
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 800;
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      padding: 0.3rem 1rem;
-      border-radius: 999px;
-    }
-
-    /* Timeline */
-    .timeline {
-      position: relative;
-      padding-left: 2.2rem;
-    }
-    .timeline::before {
-      content: '';
-      position: absolute;
-      top: 6px; bottom: 6px; left: 0;
-      width: 3px;
-      background: repeating-linear-gradient(
-        to bottom,
-        var(--gold) 0, var(--gold) 8px,
-        transparent 8px, transparent 16px
-      );
-    }
-
-    .timeline__item {
-      position: relative;
-      padding-bottom: 2.8rem;
-    }
-    .timeline__item:last-child { padding-bottom: 0; }
-
-    .timeline__dot {
-      position: absolute;
-      left: -2.2rem;
-      top: 3px;
-      width: 20px;
-      height: 20px;
-      background: var(--gold);
-      border: 3px solid var(--brown-dark);
-      border-radius: 50%;
-      transform: translateX(-50%) translateX(1.5px);
-    }
-
-    .timeline__year {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 800;
-      font-size: 1.6rem;
-      color: var(--gold);
-      line-height: 1;
-      display: block;
-    }
-    .timeline__title {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700;
-      font-size: 1.05rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--brown-dark);
-      margin: 0.2rem 0 0.35rem;
-    }
-    .timeline__desc {
-      font-size: 0.9rem;
-      color: var(--brown-mid);
-      line-height: 1.55;
-    }
-
-    /* ─── STUDENT VOICES ────────────────────────────────────────── */
-    .voices {
-      background: var(--brown-dark);
-      padding: 6.5rem 2rem;
-    }
-
-    .section-hd {
-      text-align: center;
-      margin-bottom: 3.5rem;
-    }
-    .section-hd .eyebrow { color: var(--gold); }
-
-    .section-hd__title {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 800;
-      font-size: clamp(2.8rem, 7vw, 6rem);
-      line-height: 0.88;
-      text-transform: uppercase;
-      color: var(--white);
-      display: inline-block;
-    }
-    .section-hd__title--dark { color: var(--brown-dark); }
-
-    .section-hd__wave {
-      display: block;
-      margin: 0.7rem auto 0;
-      width: 220px;
-    }
-
-    .voices__grid {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .q-card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(245,193,50,0.22);
-      border-radius: 14px;
-      padding: 2rem 1.8rem;
-      position: relative;
-      transition: transform 0.2s, border-color 0.2s;
-    }
-    .q-card:hover { transform: translateY(-4px); border-color: rgba(245,193,50,0.5); }
-
-    .q-card__mark {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 800;
-      font-size: 6rem;
-      color: var(--gold);
-      opacity: 0.22;
-      line-height: 1;
-      position: absolute;
-      top: 0.2rem;
-      left: 1.2rem;
-    }
-
-    .q-card__text {
-      font-style: italic;
-      font-size: 1.05rem;
-      color: var(--gold);
-      line-height: 1.65;
-      position: relative;
-      z-index: 1;
-      margin-top: 1.8rem;
-    }
-
-    .q-card__footer {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      margin-top: 1.6rem;
-    }
-    .q-card__avatar {
-      width: 42px; height: 42px;
-      border-radius: 50%;
-      background: var(--gold);
-      color: var(--brown-dark);
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 800;
-      font-size: 1.15rem;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
-    .q-card__name {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700;
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.07em;
-      color: rgba(255,255,255,0.55);
-    }
-
-    /* ─── HOW IT WORKS ──────────────────────────────────────────── */
-    .how {
-      background: var(--parchment2);
-      padding: 6.5rem 2rem;
-    }
-
-    .how__inner { max-width: 1100px; margin: 0 auto; }
-
-    .how__grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-      gap: 1.5rem;
-      margin-top: 3.5rem;
-    }
-
-    .how__card {
-      background: var(--white);
-      border-radius: 14px;
-      padding: 2.2rem 2rem;
-      border-top: 5px solid var(--gold);
-      box-shadow: 0 6px 30px rgba(61,43,26,0.07);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .how__card:hover { transform: translateY(-5px); box-shadow: 0 12px 40px rgba(61,43,26,0.12); }
-
-    .how__icon { width: 54px; height: 54px; margin-bottom: 1.3rem; }
-
-    .how__card-title {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 800;
-      font-size: 2rem;
-      text-transform: uppercase;
-      color: var(--brown-dark);
-      margin-bottom: 0.6rem;
-      line-height: 1;
-    }
-    .how__card-body {
-      font-size: 1rem;
-      color: var(--brown-mid);
-      line-height: 1.65;
-    }
-
-    /* ─── PARTNERS ──────────────────────────────────────────────── */
-    .partners {
-      background: var(--brown-dark);
-      padding: 5.5rem 2rem;
-      text-align: center;
-    }
-
-    .partners__label {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.25em;
-      color: rgba(255,255,255,0.35);
-      margin-bottom: 2.8rem;
-    }
-
-    .partners__row {
-      max-width: 900px;
-      margin: 0 auto;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      justify-content: center;
-    }
-
-    .p-badge {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(245,193,50,0.28);
-      border-radius: 14px;
-      padding: 1.8rem 2.4rem;
-      min-width: 200px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.7rem;
-      transition: border-color 0.2s, background 0.2s;
-    }
-    .p-badge:hover { border-color: var(--gold); background: rgba(245,193,50,0.07); }
-
-    .p-badge__name {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 800;
-      font-size: 1.25rem;
-      text-transform: uppercase;
-      color: var(--gold);
-      letter-spacing: 0.04em;
-    }
-    .p-badge__sub {
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.45);
-      letter-spacing: 0.04em;
-    }
-
-    /* ─── CTA / GET INVOLVED ────────────────────────────────────── */
-    .cta {
-      background: var(--brown-dark);
-      border-top: 5px solid var(--gold);
-      padding: 7rem 2rem 5rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .cta::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: radial-gradient(circle, rgba(245,193,50,0.08) 1px, transparent 1px);
-      background-size: 40px 40px;
-      pointer-events: none;
-    }
-
-    .cta__inner { position: relative; z-index: 1; }
-
-    .cta__headline {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 800;
-      font-size: clamp(3.5rem, 12vw, 10rem);
-      text-transform: uppercase;
-      color: var(--gold);
-      line-height: 0.88;
-      margin-bottom: 1.2rem;
-    }
-
-    .cta__sub {
-      color: rgba(255,255,255,0.72);
-      font-size: 1.1rem;
-      max-width: 480px;
-      margin: 0 auto 3rem;
-      line-height: 1.55;
-    }
-
-    .cta__paths {
-      display: flex;
-      gap: 1.5rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .cta__card {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(245,193,50,0.25);
-      border-radius: 16px;
-      padding: 2.2rem 2.5rem;
-      min-width: 230px;
-      max-width: 320px;
-      text-align: center;
-      transition: border-color 0.2s, background 0.2s;
-    }
-    .cta__card:hover { border-color: var(--gold); background: rgba(245,193,50,0.06); }
-
-    .cta__card-title {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 800;
-      font-size: 2.2rem;
-      text-transform: uppercase;
-      color: var(--white);
-      margin-bottom: 0.5rem;
-      line-height: 1;
-    }
-    .cta__card-desc {
-      font-size: 0.95rem;
-      color: rgba(255,255,255,0.6);
-      margin-bottom: 1.4rem;
-      line-height: 1.5;
-    }
-
-    /* ─── FOOTER ────────────────────────────────────────────────── */
-    .footer {
-      background: #261605;
-      padding: 2.5rem 2.5rem;
-      border-top: 1px solid rgba(245,193,50,0.15);
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .footer__brand {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 800;
-      font-size: 1.6rem;
-      color: var(--gold);
-      text-transform: uppercase;
-      display: block;
-    }
-    .footer__tagline {
-      font-size: 0.78rem;
-      color: rgba(255,255,255,0.38);
-      display: block;
-      margin-top: 0.2rem;
-      letter-spacing: 0.04em;
-    }
-
-    .footer__links {
-      display: flex;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-    .footer__links a {
-      font-size: 0.88rem;
-      color: rgba(255,255,255,0.5);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .footer__links a:hover { color: var(--gold); }
-
-    .footer__copy {
-      font-size: 0.75rem;
-      color: rgba(255,255,255,0.28);
-    }
-
-    /* ─── RESPONSIVE ────────────────────────────────────────────── */
-    @media (max-width: 820px) {
-      .nav__links, .nav__cta { display: none; }
-      .nav__hamburger { display: flex; }
-      .story__inner { grid-template-columns: 1fr; gap: 3.5rem; }
-      .impact__grid { grid-template-columns: 1fr; gap: 2.5rem; }
-      .impact__item + .impact__item::before { display: none; }
-      .hero__bubble { right: -20px; width: 70px; }
-    }
-
-    @media (max-width: 560px) {
-      .hero { padding: 3.5rem 1.5rem; }
-      .impact, .mission, .story, .voices, .how, .partners, .cta { padding: 4rem 1.5rem; }
-      .footer { flex-direction: column; text-align: center; }
-      .footer__links { justify-content: center; }
-    }
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Finding Our Voice at Mission High School</title>
+<meta name="description" content="A student-founded program at Mission High School supporting newcomer students in learning English and navigating the U.S. education system."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,700;0,800;1,800&family=Barlow:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#F5C132;--brown-dark:#3D2B1A;--brown-mid:#7A4F2E;
+  --parchment:#FDF6E3;--parchment2:#F7EDD4;--ink:#1A1A1A;--white:#fff;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Barlow',sans-serif;background:var(--parchment);color:var(--ink);font-size:18px;line-height:1.6;overflow-x:hidden}
+
+/* ── TRANSITIONS ── */
+@keyframes pageIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.page-enter{animation:pageIn .15s ease forwards}
+
+/* ── BUTTONS ── */
+.btn-pill{display:inline-block;background:var(--gold);color:var(--brown-dark);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem;text-transform:uppercase;letter-spacing:.1em;padding:.65rem 1.8rem;border-radius:999px;text-decoration:none;border:none;cursor:pointer;transition:background .2s,transform .15s;white-space:nowrap}
+.btn-pill:hover{background:#e8b420;transform:translateY(-2px)}
+.btn-pill--dark{background:var(--brown-dark);color:var(--gold)}
+.btn-pill--dark:hover{background:#2a1d0e}
+.btn-outline{display:inline-block;background:transparent;color:var(--white);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem;text-transform:uppercase;letter-spacing:.1em;padding:.65rem 1.8rem;border-radius:999px;text-decoration:none;border:2px solid rgba(255,255,255,.5);transition:border-color .2s,background .2s;white-space:nowrap;cursor:pointer}
+.btn-outline:hover{border-color:var(--white);background:rgba(255,255,255,.07)}
+.btn-outline--brown{color:var(--brown-dark);border-color:rgba(61,43,26,.4)}
+.btn-outline--brown:hover{border-color:var(--brown-dark);background:rgba(61,43,26,.07)}
+.eyebrow{display:block;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;text-transform:uppercase;letter-spacing:.22em;margin-bottom:.8rem}
+
+/* ── NAV ── */
+.nav{position:sticky;top:0;z-index:200;background:var(--brown-dark);height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;box-shadow:0 2px 20px rgba(0,0,0,.35);transition:box-shadow .3s}
+.nav__logo{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:2rem;color:var(--gold);text-decoration:none;letter-spacing:.06em;text-transform:uppercase;line-height:1;cursor:pointer}
+.nav__links{display:flex;gap:1.8rem;list-style:none;align-items:center}
+.nav__links a{font-family:'Barlow',sans-serif;font-weight:600;font-size:.88rem;letter-spacing:.04em;color:rgba(255,255,255,.75);text-decoration:none;transition:color .2s;cursor:pointer;background:none;border:none;padding:0}
+.nav__links a:hover,.nav__links a.active{color:var(--gold)}
+.nav__right{display:flex;align-items:center;gap:.8rem}
+.lang-toggle{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.85rem;letter-spacing:.1em;background:rgba(245,193,50,.15);color:var(--gold);border:1px solid rgba(245,193,50,.4);border-radius:999px;padding:.35rem .9rem;cursor:pointer;transition:background .2s;white-space:nowrap}
+.lang-toggle:hover{background:rgba(245,193,50,.25)}
+.nav__hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.nav__hamburger span{display:block;width:26px;height:2px;background:var(--gold);border-radius:2px;transition:all .3s}
+.nav__drawer{display:none;position:absolute;top:68px;left:0;right:0;background:var(--brown-dark);border-top:1px solid rgba(245,193,50,.18);padding:1.5rem 2rem;flex-direction:column;gap:1rem;z-index:199}
+.nav__drawer.open{display:flex}
+.nav__drawer a{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.25rem;text-transform:uppercase;letter-spacing:.06em;color:var(--white);text-decoration:none;padding:.3rem 0;border-bottom:1px solid rgba(255,255,255,.08);cursor:pointer}
+.nav__drawer a:last-of-type{border-bottom:none}
+.nav__drawer .lang-toggle{align-self:flex-start;margin-top:.5rem}
+
+/* ── HERO ── */
+.hero{background:var(--brown-dark);min-height:calc(100vh - 68px);display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;padding:5rem 2rem}
+.hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(245,193,50,.12) 1px,transparent 1px);background-size:36px 36px;pointer-events:none}
+.hero__arcs{position:absolute;inset:0;pointer-events:none;opacity:.05}
+.hero__content{position:relative;z-index:2;max-width:960px;width:100%}
+.hero__headline-wrap{position:relative;display:inline-block}
+.hero__headline{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(5rem,18vw,15rem);line-height:.87;text-transform:uppercase;letter-spacing:-.01em;margin-bottom:2rem}
+.hero__headline .g{color:var(--gold);display:block}
+.hero__headline .w{color:var(--white);display:block}
+.hero__bubble{position:absolute;top:-28px;right:-65px;width:95px;pointer-events:none}
+.hero__star{position:absolute;bottom:10px;left:-45px;width:56px;pointer-events:none;opacity:.8}
+.hero__sub{color:rgba(255,255,255,.78);font-size:clamp(1rem,2vw,1.2rem);max-width:520px;margin:0 auto 2.8rem;line-height:1.55}
+.hero__btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+/* ── IMPACT ── */
+.impact{background:var(--parchment);padding:5.5rem 2rem;border-top:4px solid var(--brown-dark);border-bottom:4px solid var(--brown-dark)}
+.impact__grid{max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;text-align:center}
+.impact__item{position:relative}
+.impact__item+.impact__item::before{content:'';position:absolute;left:0;top:15%;bottom:15%;width:2px;background:repeating-linear-gradient(to bottom,var(--brown-mid) 0,var(--brown-mid) 5px,transparent 5px,transparent 10px)}
+.impact__num{display:block;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(4rem,11vw,9rem);line-height:1;color:var(--gold);-webkit-text-stroke:3px var(--brown-dark)}
+.impact__label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;text-transform:uppercase;letter-spacing:.1em;color:var(--brown-mid);margin-top:.4rem;display:block;line-height:1.35}
+.impact__label small{display:block;font-size:.75rem;letter-spacing:.06em;opacity:.75;margin-top:.15rem}
+
+/* ── MISSION ── */
+.mission{background:var(--brown-dark);padding:7rem 2rem;text-align:center;position:relative;overflow:hidden}
+.mission::after{content:'';position:absolute;inset:0;background-image:radial-gradient(circle at 80% 20%,rgba(245,193,50,.06) 0,transparent 50%),radial-gradient(circle at 20% 80%,rgba(245,193,50,.06) 0,transparent 50%);pointer-events:none}
+.mission__inner{max-width:860px;margin:0 auto;position:relative;z-index:1}
+.mission__text{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,5vw,4rem);line-height:1.08;color:var(--white);text-transform:uppercase}
+.mission__highlight{color:var(--gold);position:relative;display:inline-block;white-space:nowrap}
+.mission__highlight svg{position:absolute;bottom:-10px;left:-4px;width:calc(100% + 8px);height:16px;pointer-events:none}
+.mission__pencil{position:absolute;bottom:2rem;right:3rem;width:56px;transform:rotate(18deg);opacity:.65;pointer-events:none}
+
+/* ── SECTION HEADER ── */
+.section-dark{background:var(--brown-dark);padding:6rem 2rem}
+.section-light{background:var(--parchment);padding:6rem 2rem}
+.section-light2{background:var(--parchment2);padding:6rem 2rem}
+.section-hd{text-align:center;margin-bottom:3.5rem}
+.section-hd .eyebrow{color:var(--gold)}
+.section-hd__title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2.8rem,7vw,6rem);line-height:.88;text-transform:uppercase;color:var(--white);display:inline-block}
+.section-hd__title--dark{color:var(--brown-dark)}
+.section-hd__wave{display:block;margin:.7rem auto 0;width:220px}
+.section-hd--left{text-align:left}
+.section-hd--left .section-hd__wave{margin:.6rem 0 0}
+
+/* ── STORY ── */
+.story__inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.story__headline{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3.2rem);line-height:.93;text-transform:uppercase;color:var(--brown-dark);margin-bottom:2rem}
+.story__body p{font-size:1rem;color:var(--brown-mid);margin-bottom:1.1rem;line-height:1.75}
+.story__body strong{color:var(--brown-dark)}
+.story__founders{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.8rem}
+.founder-chip{background:var(--gold);color:var(--brown-dark);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.85rem;text-transform:uppercase;letter-spacing:.08em;padding:.3rem 1rem;border-radius:999px;cursor:pointer}
+.founder-chip:hover{background:#e8b420}
+.timeline{position:relative;padding-left:2.2rem}
+.timeline::before{content:'';position:absolute;top:6px;bottom:6px;left:0;width:3px;background:repeating-linear-gradient(to bottom,var(--gold) 0,var(--gold) 8px,transparent 8px,transparent 16px)}
+.timeline__item{position:relative;padding-bottom:2.8rem}
+.timeline__item:last-child{padding-bottom:0}
+.timeline__dot{position:absolute;left:-2.2rem;top:3px;width:20px;height:20px;background:var(--gold);border:3px solid var(--brown-dark);border-radius:50%;transform:translateX(-50%) translateX(1.5px)}
+.timeline__year{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.6rem;color:var(--gold);line-height:1;display:block}
+.timeline__title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem;text-transform:uppercase;letter-spacing:.06em;color:var(--brown-dark);margin:.2rem 0 .35rem}
+.timeline__desc{font-size:.9rem;color:var(--brown-mid);line-height:1.55}
+
+/* ── VOICES ── */
+.voices__grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem}
+.q-card{background:rgba(255,255,255,.05);border:1px solid rgba(245,193,50,.22);border-radius:14px;padding:2rem 1.8rem;position:relative;transition:transform .2s,border-color .2s}
+.q-card:hover{transform:translateY(-4px);border-color:rgba(245,193,50,.5)}
+.q-card__mark{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:6rem;color:var(--gold);opacity:.22;line-height:1;position:absolute;top:.2rem;left:1.2rem}
+.q-card__text{font-style:italic;font-size:1.05rem;color:var(--gold);line-height:1.65;position:relative;z-index:1;margin-top:1.8rem}
+.q-card__footer{display:flex;align-items:center;gap:.8rem;margin-top:1.6rem}
+.q-card__avatar{width:42px;height:42px;border-radius:50%;background:var(--gold);color:var(--brown-dark);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.15rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.q-card__name{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.55)}
+
+/* ── HOW IT WORKS ── */
+.how__inner{max-width:1100px;margin:0 auto}
+.how__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.5rem;margin-top:3.5rem}
+.how__card{background:var(--white);border-radius:14px;padding:2.2rem 2rem;border-top:5px solid var(--gold);box-shadow:0 6px 30px rgba(61,43,26,.07);transition:transform .2s,box-shadow .2s}
+.how__card:hover{transform:translateY(-5px);box-shadow:0 12px 40px rgba(61,43,26,.12)}
+.how__icon{width:54px;height:54px;margin-bottom:1.3rem}
+.how__card-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:2rem;text-transform:uppercase;color:var(--brown-dark);margin-bottom:.6rem;line-height:1}
+.how__card-body{font-size:1rem;color:var(--brown-mid);line-height:1.65}
+
+/* ── PARTNERS ── */
+.partners__label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;text-transform:uppercase;letter-spacing:.25em;color:rgba(255,255,255,.35);margin-bottom:2.8rem;text-align:center}
+.partners__row{max-width:900px;margin:0 auto;display:flex;flex-wrap:wrap;gap:1.5rem;justify-content:center}
+.p-badge{background:rgba(255,255,255,.06);border:1px solid rgba(245,193,50,.28);border-radius:14px;padding:1.8rem 2.4rem;min-width:200px;display:flex;flex-direction:column;align-items:center;gap:.7rem;transition:border-color .2s,background .2s}
+.p-badge:hover{border-color:var(--gold);background:rgba(245,193,50,.07)}
+.p-badge__name{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.25rem;text-transform:uppercase;color:var(--gold);letter-spacing:.04em}
+.p-badge__sub{font-size:.8rem;color:rgba(255,255,255,.45);letter-spacing:.04em}
+
+/* ── TEAM PAGE ── */
+.team__intro{font-size:1.05rem;color:rgba(255,255,255,.72);max-width:620px;margin:1.5rem auto 0;text-align:center;line-height:1.65}
+.team-grid{max-width:1100px;margin:3.5rem auto 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem}
+.team-card{background:rgba(255,255,255,.05);border:1px solid rgba(245,193,50,.22);border-radius:14px;padding:2rem 1.8rem;text-align:center;cursor:pointer;transition:transform .2s,border-color .2s,background .2s}
+.team-card:hover{transform:translateY(-6px);border-color:var(--gold);background:rgba(245,193,50,.06)}
+.team-card__avatar{width:80px;height:80px;border-radius:50%;background:var(--gold);color:var(--brown-dark);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.8rem;display:flex;align-items:center;justify-content:center;margin:0 auto 1.2rem}
+.team-card__name{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.8rem;text-transform:uppercase;color:var(--white);line-height:1;margin-bottom:.3rem}
+.team-card__role{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:1rem}
+.team-card__blurb{font-size:.9rem;color:rgba(255,255,255,.6);line-height:1.55;margin-bottom:1.4rem}
+.team-card__btn{font-size:.85rem;padding:.5rem 1.4rem}
+
+/* ── FOUNDER BIO PAGE ── */
+.founder-hero{background:var(--brown-dark);padding:5rem 2rem 4rem;text-align:center;position:relative;overflow:hidden}
+.founder-hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(245,193,50,.1) 1px,transparent 1px);background-size:36px 36px;pointer-events:none}
+.founder-hero__inner{position:relative;z-index:1}
+.founder-hero__avatar{width:120px;height:120px;border-radius:50%;background:var(--gold);color:var(--brown-dark);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:3rem;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;border:4px solid rgba(255,255,255,.15)}
+.founder-hero__name{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(3.5rem,10vw,8rem);text-transform:uppercase;color:var(--gold);line-height:.9;margin-bottom:.6rem}
+.founder-hero__role{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.6)}
+.founder-body{background:var(--parchment);padding:5rem 2rem}
+.founder-body__inner{max-width:780px;margin:0 auto}
+.back-btn{display:inline-flex;align-items:center;gap:.4rem;margin-bottom:3rem;font-size:.9rem}
+.founder-bios p{font-size:1.05rem;color:var(--brown-mid);line-height:1.8;margin-bottom:1.3rem}
+.founder-bios strong{color:var(--brown-dark)}
+.founder-quote{background:var(--brown-dark);border-radius:14px;padding:2.2rem 2.4rem;margin:2.5rem 0;position:relative}
+.founder-quote::before{content:'\201C';font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:6rem;color:var(--gold);opacity:.2;position:absolute;top:.2rem;left:1.2rem;line-height:1}
+.founder-quote__label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.75rem;text-transform:uppercase;letter-spacing:.18em;color:rgba(255,255,255,.4);margin-bottom:1rem}
+.founder-quote__text{font-style:italic;font-size:1.2rem;color:var(--gold);line-height:1.6;position:relative;z-index:1}
+.founder-contribs{margin-top:2.5rem}
+.founder-contribs__title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.5rem;text-transform:uppercase;color:var(--brown-dark);margin-bottom:1.2rem}
+.founder-contribs ul{list-style:none;padding:0}
+.founder-contribs li{display:flex;align-items:flex-start;gap:.8rem;padding:.7rem 0;border-bottom:1px solid rgba(61,43,26,.1);font-size:1rem;color:var(--brown-mid);line-height:1.5}
+.founder-contribs li:last-child{border-bottom:none}
+.founder-contribs li::before{content:'';flex-shrink:0;width:9px;height:9px;background:var(--gold);border-radius:50%;margin-top:.45rem}
+
+/* ── RESOURCES ── */
+.resource-grid{max-width:1100px;margin:3rem auto 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem}
+.resource-card{background:var(--white);border-radius:14px;padding:1.8rem;border-left:5px solid var(--gold);box-shadow:0 4px 20px rgba(61,43,26,.07);transition:transform .2s,box-shadow .2s}
+.resource-card:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(61,43,26,.12)}
+.resource-card__title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.5rem;text-transform:uppercase;color:var(--brown-dark);margin-bottom:.4rem;line-height:1}
+.resource-card__body{font-size:.95rem;color:var(--brown-mid);line-height:1.6;margin-bottom:1.2rem}
+.resource-card__link{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;text-transform:uppercase;letter-spacing:.08em;color:var(--brown-dark);text-decoration:none;border-bottom:2px solid var(--gold);padding-bottom:1px;transition:color .2s}
+.resource-card__link:hover{color:var(--brown-mid)}
+
+/* ── GET INVOLVED / CTA ── */
+.cta{background:var(--brown-dark);border-top:5px solid var(--gold);padding:7rem 2rem 5rem;text-align:center;position:relative;overflow:hidden}
+.cta::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(245,193,50,.08) 1px,transparent 1px);background-size:40px 40px;pointer-events:none}
+.cta__inner{position:relative;z-index:1}
+.cta__headline{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(3.5rem,12vw,10rem);text-transform:uppercase;color:var(--gold);line-height:.88;margin-bottom:1.2rem}
+.cta__sub{color:rgba(255,255,255,.72);font-size:1.1rem;max-width:480px;margin:0 auto 3rem;line-height:1.55}
+.cta__paths{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap}
+.cta__card{background:rgba(255,255,255,.06);border:1px solid rgba(245,193,50,.25);border-radius:16px;padding:2.2rem 2.5rem;min-width:230px;max-width:320px;text-align:center;transition:border-color .2s,background .2s}
+.cta__card:hover{border-color:var(--gold);background:rgba(245,193,50,.06)}
+.cta__card-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:2.2rem;text-transform:uppercase;color:var(--white);margin-bottom:.5rem;line-height:1}
+.cta__card-desc{font-size:.95rem;color:rgba(255,255,255,.6);margin-bottom:1.4rem;line-height:1.5}
+
+/* ── FORM ── */
+.form-wrap{max-width:640px;margin:4rem auto 0;background:rgba(255,255,255,.05);border:1px solid rgba(245,193,50,.2);border-radius:16px;padding:2.5rem}
+.form-wrap h3{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:2rem;text-transform:uppercase;color:var(--gold);margin-bottom:1.8rem;line-height:1}
+.form-group{margin-bottom:1.3rem}
+.form-group label{display:block;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.6);margin-bottom:.4rem}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:.75rem 1rem;background:rgba(255,255,255,.07);border:1px solid rgba(245,193,50,.25);border-radius:8px;color:var(--white);font-family:'Barlow',sans-serif;font-size:1rem;transition:border-color .2s;appearance:none}
+.form-group input::placeholder,.form-group textarea::placeholder{color:rgba(255,255,255,.3)}
+.form-group select option{background:var(--brown-dark);color:var(--white)}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--gold)}
+.form-group textarea{min-height:110px;resize:vertical}
+.form-confirm{display:none;padding:3rem 1rem;text-align:center}
+.form-confirm p{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:2rem;color:var(--gold);text-transform:uppercase;line-height:1.2}
+
+/* ── FOOTER ── */
+.footer{background:#261605;padding:2.5rem 2rem;border-top:1px solid rgba(245,193,50,.15);display:flex;flex-wrap:wrap;gap:1.5rem;justify-content:space-between;align-items:center}
+.footer__brand{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.5rem;color:var(--gold);text-transform:uppercase;display:block;cursor:pointer}
+.footer__tagline{font-size:.78rem;color:rgba(255,255,255,.38);display:block;margin-top:.2rem;letter-spacing:.04em}
+.footer__links{display:flex;gap:1.4rem;flex-wrap:wrap;align-items:center}
+.footer__links a{font-size:.88rem;color:rgba(255,255,255,.5);text-decoration:none;transition:color .2s;cursor:pointer}
+.footer__links a:hover{color:var(--gold)}
+.footer__copy{font-size:.75rem;color:rgba(255,255,255,.28)}
+
+/* ── SPANISH HEADLINE SCALE (ENCONTRANDO is 11 chars vs 7 for FINDING) ── */
+[lang="es"] .hero__headline{font-size:clamp(2rem,12vw,12rem)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:820px){
+  .nav__links,.nav__cta{display:none}
+  .nav__hamburger{display:flex}
+  .story__inner{grid-template-columns:1fr;gap:3rem}
+  .impact__grid{grid-template-columns:1fr;gap:2.5rem}
+  .impact__item+.impact__item::before{display:none}
+  .hero__bubble{right:-15px;width:65px}
+}
+@media(max-width:560px){
+  .hero{padding:3.5rem 1.5rem}
+  .section-dark,.section-light,.section-light2,.mission,.founder-body,.founder-hero,.cta{padding:4rem 1.5rem}
+  .footer{flex-direction:column;text-align:center}
+  .footer__links{justify-content:center}
+  .form-wrap{padding:1.8rem 1.2rem}
+}
+</style>
 </head>
 <body>
+<div id="site"></div>
+<script>
+/* ═══════════════════════════════════════════
+   TRANSLATIONS
+═══════════════════════════════════════════ */
+const T = {
+en:{
+  nav_about:'About',nav_programs:'Programs',nav_voices:'Student Voices',
+  nav_resources:'Resources',nav_team:'Meet the Team',nav_involved:'Get Involved',
+  lang_toggle:'ES',
+  hero_line1:'FINDING',hero_line2:'OUR',hero_line3:'VOICE',
+  hero_sub:'Supporting newcomer students at Mission High School, in partnership with 826 Valencia',
+  hero_btn_story:'Our Story',hero_btn_involved:'Get Involved',
+  impact_students:'Students Helped',impact_grant:'Grant Received',
+  impact_grant_sub:'Youth Funding Youth Ideas',impact_founders:'Student Co-founders',
+  impact_founders_sub:'Yuli · Emir · Darwing',
+  mission_eyebrow:'Our Mission',
+  mission_pre:'Finding Our Voice supports newcomer students in learning English and building community, so',
+  mission_highlight:'every voice',mission_post:'gets heard.',
+  story_eyebrow:'How We Started',
+  story_headline:'From Conversation Partners to Finding Our Voice',
+  story_p1:'It started with a simple idea: what if students helped other students? At Mission High School in San Francisco, a group of us noticed that newcomer students (immigrants, refugees, and undocumented youth) were struggling to find their footing in a new language and a new country.',
+  story_p2:'We partnered with 826 Valencia, San Francisco’s beloved literacy nonprofit, to launch an after-school conversation program. What began informally grew into something real: a structured peer mentorship and English learning initiative shaped entirely by students, for students.',
+  story_p3:'In 2024, our program received a <strong>$10,000 grant</strong> from Youth Funding Youth Ideas. Proof that what we built mattered. Today, Finding Our Voice is the foundation newcomer students at Mission High didn’t know they needed.',
+  tl_2022_title:'The Spark',tl_2022_desc:'Students at Mission High begin informal English conversation sessions with newcomer peers after school.',
+  tl_2023_title:'826 Valencia Partnership',tl_2023_desc:'Official partnership with 826 Valencia brings structure, resources, and an entire community of educators behind the program.',
+  tl_2024_title:'$10K Grant',tl_2024_desc:'Youth Funding Youth Ideas awards Finding Our Voice a $10,000 grant, validating the program’s impact and expanding its reach.',
+  tl_now:'Now',tl_now_title:'Growing Impact',tl_now_desc:'30+ students served, a dedicated founding team, and a blueprint for what student-led support can look like at any school.',
+  team_eyebrow:'The people behind the program',team_headline_1:'MEET THE',team_headline_2:'TEAM',
+  team_intro:'Finding Our Voice was built by four Mission High School students who turned a shared frustration into a movement.',
+  team_view:'Read Full Bio',
+  gil_short:'Led the founding vision, secured the $10K grant, and built the program from the ground up.',
+  yuli_short:'Designed the curriculum to feel culturally relevant and welcoming for every student.',
+  emir_short:'Built the peer mentorship program from his own lived experience as a newcomer.',
+  darwing_short:'Manages all operations and logistics. The reason everything actually runs.',
+  voices_eyebrow:'Stories from the classroom',voices_headline_1:'THEIR WORDS.',voices_headline_2:'THEIR WORLD.',
+  v1_text:'Before this program, I was afraid to speak in class. Now I raise my hand every day. Finding Our Voice didn’t just teach me English. It taught me that my voice matters.',
+  v1_name:'Newcomer Student, 10th Grade',
+  v2_text:'I came from El Salvador and didn’t know anyone. The mentors made me feel like I belonged. My English improved so fast because we practiced like friends, not like a class.',
+  v2_name:'Newcomer Student, 11th Grade',
+  v3_text:'I never thought about college until this program. Now I’m applying to five universities. Someone who looked like me showed me it was possible.',
+  v3_name:'Program Graduate, Class of 2024',
+  how_eyebrow:'What We Do',how_headline_1:'HOW IT',how_headline_2:'WORKS',
+  how1_title:'Learn English',how1_body:'Dynamic, culturally relevant lessons led by peers who understand where you’re coming from. Not just grammar drills.',
+  how2_title:'Build Community',how2_body:'Make friends, find mentors, and connect with others who share your experience. You are not alone in this journey.',
+  how3_title:'Pursue College',how3_body:'Real guidance on applications, financial aid, and what higher education looks like, even if no one in your family has been before.',
+  res_eyebrow:'For Students and Families',res_headline:'RESOURCES',
+  res_intro:'Tools, guides, and links to help newcomer students and their families navigate school, language learning, and more.',
+  res1_title:'English Learning',res1_body:'Free online tools to practice reading, writing, and speaking at your own pace.',res1_link:'Duolingo',
+  res2_title:'College Access',res2_body:'Guides on applying to college as an undocumented or first-generation student.',res2_link:'TheDream.US',
+  res3_title:'Know Your Rights',res3_body:'Legal resources and information for immigrant students and families in San Francisco.',res3_link:'ILRC',
+  res4_title:'Free Tutoring',res4_body:'Free writing workshops and tutoring for students in the Mission District.',res4_link:'826 Valencia',
+  res_visit:'Visit',partners_label:'Partners & Recognition',
+  p1_name:'826 Valencia',p1_sub:'Literacy & Tutoring Partner',
+  p2_name:'Youth Funding Youth Ideas',p2_sub:'$10,000 Grant Recipient',
+  p3_name:'Mission High School',p3_sub:'San Francisco, CA',
+  cta_eyebrow:'Make a Difference',cta_headline_1:'JOIN THE',cta_headline_2:'MOVEMENT',
+  cta_sub:'Every student deserves the chance to find their voice. Here’s how you can help make that happen.',
+  vol_title:'Volunteer',vol_desc:'Join as a conversation partner or mentor. Any language skills welcome.',vol_btn:'Sign Up',
+  don_title:'Donate',don_desc:'Your contribution funds resources, events, and college prep materials.',don_btn:'Give Now',
+  form_headline:'Send Us a Message',form_name:'Your Name',form_email:'Your Email',
+  form_intent:'I want to:',form_opt1:'Volunteer',form_opt2:'Donate',form_opt3:'Partner with us',form_opt4:'Learn more',
+  form_message:'Message',form_submit:'Send Message',
+  form_confirm:'Thank you! We’ll be in touch soon. 💛',
+  footer_tagline:'Founded at Mission High School · San Francisco, CA',
+  footer_copy:'© 2025 Finding Our Voice. All rights reserved.',
+  back_team:'← Back to Team',founder_quote_label:'What this program means to me',
+  founder_contributions:'Contributions to the Program',
+  gil_role:'Co-Founder & Program Director',
+  gil_bio1:'Gil grew up navigating two worlds: the Mission District neighborhood he called home, and the American school system that often felt foreign. As a student at Mission High, he noticed that newcomer students like himself were invisible in the classroom, struggling with English, unsure of how to ask for help, and far from the support they needed.',
+  gil_bio2:'In his first weeks at Mission High, he felt the weight of that confusion firsthand. That experience lit a fire. Gil co-founded Finding Our Voice to make sure no student had to feel that alone.',
+  gil_bio3:'He partnered with 826 Valencia, secured a $10,000 grant from Youth Funding Youth Ideas, and built the program from the ground up alongside Yuli, Emir, and Darwing.',
+  gil_bio4:'Today, Finding Our Voice is the foundation he wished had existed when he arrived. Gil continues to lead the program, keeping it student-centered and growing.',
+  gil_quote:'“I started this because I knew exactly what it felt like to be lost in a school that didn’t see you.”',
+  gil_c1:'Founded Finding Our Voice and shaped its core vision',gil_c2:'Secured $10,000 grant from Youth Funding Youth Ideas',
+  gil_c3:'Built the 826 Valencia partnership from scratch',gil_c4:'Grew the program to serve 30+ newcomer students',
+  yuli_role:'Co-Founder & Curriculum Lead',
+  yuli_bio1:'Yuli brought her heart and her community roots to Finding Our Voice from day one. Growing up surrounded by families navigating immigration, language barriers, and an education system that wasn’t built for them, she understood deeply what newcomer students needed: not just language lessons, but belonging.',
+  yuli_bio2:'As co-founder, Yuli helped shape the program’s curriculum from the ground up, making sure every lesson felt culturally relevant, welcoming, and grounded in the real experiences of students in the room.',
+  yuli_bio3:'She believed that learning English should never mean losing yourself. That belief became the heart of how Finding Our Voice teaches language.',
+  yuli_bio4:'Yuli’s approach to curriculum brought warmth and cultural pride into every session, turning what could have been a generic ESL program into something students actually looked forward to.',
+  yuli_quote:'“Language is a bridge, not a barrier. We built this program to make that bridge easier to cross.”',
+  yuli_c1:'Designed the bilingual, culturally responsive curriculum',yuli_c2:'Created lesson plans rooted in students’ real experiences',
+  yuli_c3:'Championed the belief that identity and language learning go hand in hand',yuli_c4:'Made Finding Our Voice feel like home for newcomer students',
+  emir_role:'Co-Founder & Peer Mentorship Lead',
+  emir_bio1:'Emir came to Mission High as a newcomer himself, and that experience became the compass for everything he contributed to Finding Our Voice. He knew what it meant to sit in a classroom and not understand a single word, to feel the anxiety of being called on without the language to answer.',
+  emir_bio2:'When Gil proposed the idea, Emir was in immediately. Not just because he wanted to help students survive the system, but because he wanted to help them thrive in it.',
+  emir_bio3:'Emir focused on building the peer mentorship side of the program, connecting older students with newer arrivals to create the kind of support he wished he’d had when he first arrived.',
+  emir_bio4:'His lived experience gave the program something no outside trainer could provide: real credibility with the students it served. When Emir says "I was where you are," every newcomer in the room believes it.',
+  emir_quote:'“I was that student once. I know what a difference one person who believes in you can make.”',
+  emir_c1:'Built and runs the peer mentorship program',emir_c2:'Pairs older students with newcomers for one-on-one support',
+  emir_c3:'Trained student mentors to lead with empathy and cultural awareness',emir_c4:'Brought lived experience and credibility to every aspect of the program',
+  darwing_role:'Co-Founder & Operations Lead',
+  darwing_bio1:'Darwing is the builder of the group, the one who asked "how do we actually make this work?" at every step. While his co-founders brought vision and lived experience, Darwing brought structure, organization, and the drive to turn a great idea into a real program.',
+  darwing_bio2:'He worked closely with 826 Valencia to coordinate logistics, managed the grant application process, and made sure that what the team promised, they delivered.',
+  darwing_bio3:'Darwing believes deeply that student-led programs are more powerful than anything designed from the outside, because they come from real understanding of what students actually face.',
+  darwing_bio4:'Behind every successful session, grant report, and community event is Darwing making sure the details are handled. Finding Our Voice runs because he makes it run.',
+  darwing_quote:'“Student-led means we actually know what students need. That’s our superpower.”',
+  darwing_c1:'Manages program operations, scheduling, and logistics',darwing_c2:'Led the Youth Funding Youth Ideas grant application process',
+  darwing_c3:'Coordinates with 826 Valencia on all partnership activities',darwing_c4:'Keeps the program running on time, on budget, and on mission'
+},
+es:{
+  nav_about:'Acerca de',nav_programs:'Programas',nav_voices:'Voces Estudiantiles',
+  nav_resources:'Recursos',nav_team:'Conoce al Equipo',nav_involved:'Unéte',
+  lang_toggle:'EN',
+  hero_line1:'ENCONTRANDO',hero_line2:'NUESTRA',hero_line3:'VOZ',
+  hero_sub:'Apoyando a estudiantes recién llegados en Mission High School, en colaboración con 826 Valencia',
+  hero_btn_story:'Nuestra Historia',hero_btn_involved:'Unéte',
+  impact_students:'Estudiantes Ayudados',impact_grant:'Beca Recibida',
+  impact_grant_sub:'Youth Funding Youth Ideas',impact_founders:'Co-fundadores Estudiantiles',
+  impact_founders_sub:'Yuli · Emir · Darwing',
+  mission_eyebrow:'Nuestra Misión',
+  mission_pre:'Encontrando Nuestra Voz apoya a estudiantes recién llegados a aprender inglés y construir comunidad, para que',
+  mission_highlight:'cada voz',mission_post:'sea escuchada.',
+  story_eyebrow:'Cómo Empezamos',
+  story_headline:'De Conversation Partners a Encontrando Nuestra Voz',
+  story_p1:'Todo comenzó con una idea simple: ¿qué pasa si los estudiantes ayudan a otros estudiantes? En Mission High School en San Francisco, un grupo de nosotros notó que los estudiantes recién llegados (inmigrantes, refugiados y jóvenes indocumentados) luchaban por encontrar su lugar en un nuevo idioma y un nuevo país.',
+  story_p2:'Nos asociamos con 826 Valencia, la querida organización de alfabetización de San Francisco, para lanzar un programa de conversación después de la escuela. Lo que comenzó de manera informal creció en algo real: una iniciativa estructurada de mentoría entre pares formada completamente por estudiantes, para estudiantes.',
+  story_p3:'En 2024, nuestro programa recibió una <strong>beca de $10,000</strong> de Youth Funding Youth Ideas. Prueba de que lo que construimos importa. Hoy, Encontrando Nuestra Voz es la base que los estudiantes recién llegados en Mission High no sabían que necesitaban.',
+  tl_2022_title:'La Chispa',tl_2022_desc:'Estudiantes de Mission High comienzan sesiones informales de conversación en inglés con compañeros recién llegados después de la escuela.',
+  tl_2023_title:'Asociación con 826 Valencia',tl_2023_desc:'La asociación oficial con 826 Valencia trae estructura, recursos y toda una comunidad de educadores detrás del programa.',
+  tl_2024_title:'Beca de $10K',tl_2024_desc:'Youth Funding Youth Ideas otorga a Encontrando Nuestra Voz una beca de $10,000, validando el impacto del programa y expandiendo su alcance.',
+  tl_now:'Ahora',tl_now_title:'Impacto Creciente',tl_now_desc:'Más de 30 estudiantes atendidos, un equipo fundador dedicado y un modelo de lo que el apoyo liderado por estudiantes puede parecer en cualquier escuela.',
+  team_eyebrow:'Las personas detrás del programa',team_headline_1:'CONOCE AL',team_headline_2:'EQUIPO',
+  team_intro:'Encontrando Nuestra Voz fue construido por cuatro estudiantes de Mission High School que convirtieron una frustración compartida en un movimiento.',
+  team_view:'Leer Biografía Completa',
+  gil_short:'Lideró la visión fundacional, obtuvo la beca de $10K y construyó el programa desde cero.',
+  yuli_short:'Diseñó el currículo para que sea culturalmente relevante y acogedor para cada estudiante.',
+  emir_short:'Construyó el programa de mentoría entre pares desde su experiencia vivida como recién llegado.',
+  darwing_short:'Gestiona todas las operaciones y logística. La razón por la que todo funciona realmente.',
+  voices_eyebrow:'Historias del salón de clases',voices_headline_1:'SUS PALABRAS.',voices_headline_2:'SU MUNDO.',
+  v1_text:'Antes de este programa, tenía miedo de hablar en clase. Ahora levanto la mano todos los días. Encontrando Nuestra Voz no solo me enseñó inglés. Me enseñó que mi voz importa.',
+  v1_name:'Estudiante Recién Llegado, 10° Grado',
+  v2_text:'Vine de El Salvador y no conocía a nadie. Los mentores me hicieron sentir que pertenecía. Mi inglés mejoró tan rápido porque practicamos como amigos, no como una clase.',
+  v2_name:'Estudiante Recién Llegado, 11° Grado',
+  v3_text:'Nunca pensé en la universidad hasta este programa. Ahora estoy aplicando a cinco universidades. Alguien que se parecía a mí me mostró que era posible.',
+  v3_name:'Graduado del Programa, Clase de 2024',
+  how_eyebrow:'Lo Que Hacemos',how_headline_1:'CÓMO',how_headline_2:'FUNCIONA',
+  how1_title:'Aprende Inglés',how1_body:'Lecciones dinámicas y culturalmente relevantes lideradas por compañeros que entienden de dónde vienes. No solo ejercicios de gramática.',
+  how2_title:'Construye Comunidad',how2_body:'Haz amigos, encuentra mentores y conéctate con otros que comparten tu experiencia. No estás solo en este camino.',
+  how3_title:'Busca la Universidad',how3_body:'Orientación real sobre solicitudes, ayuda financiera y cómo es la educación superior, incluso si nadie en tu familia ha asistido antes.',
+  res_eyebrow:'Para Estudiantes y Familias',res_headline:'RECURSOS',
+  res_intro:'Herramientas, guías y enlaces para ayudar a los estudiantes recién llegados y sus familias a navegar la escuela, el aprendizaje del idioma y más.',
+  res1_title:'Aprendizaje de Inglés',res1_body:'Herramientas en línea gratuitas para practicar lectura, escritura y expresión oral a tu propio ritmo.',res1_link:'Duolingo',
+  res2_title:'Acceso a la Universidad',res2_body:'Guías sobre cómo solicitar ingreso a la universidad como estudiante indocumentado o de primera generación.',res2_link:'TheDream.US',
+  res3_title:'Conoce Tus Derechos',res3_body:'Recursos legales e información para estudiantes inmigrantes y familias en San Francisco.',res3_link:'ILRC',
+  res4_title:'Tutoría Gratuita',res4_body:'Talleres de escritura gratuitos y tutoría para estudiantes en el Distrito de la Misión.',res4_link:'826 Valencia',
+  res_visit:'Visitar',partners_label:'Socios y Reconocimientos',
+  p1_name:'826 Valencia',p1_sub:'Socio de Alfabetización y Tutoría',
+  p2_name:'Youth Funding Youth Ideas',p2_sub:'Receptor de Beca de $10,000',
+  p3_name:'Mission High School',p3_sub:'San Francisco, CA',
+  cta_eyebrow:'Haz una Diferencia',cta_headline_1:'UNÉTE AL',cta_headline_2:'MOVIMIENTO',
+  cta_sub:'Cada estudiante merece la oportunidad de encontrar su voz. Así es como puedes ayudar a que eso suceda.',
+  vol_title:'Voluntariado',vol_desc:'Unéte como compañero de conversación o mentor. Se bienvenidas todas las habilidades lingüísticas.',vol_btn:'Inscríbete',
+  don_title:'Donar',don_desc:'Tu contribución financia recursos, eventos y materiales de preparación universitaria.',don_btn:'Donar Ahora',
+  form_headline:'Envíanos un Mensaje',form_name:'Tu Nombre',form_email:'Tu Correo Electrónico',
+  form_intent:'Quiero:',form_opt1:'Voluntariado',form_opt2:'Donar',form_opt3:'Asociarme con ustedes',form_opt4:'Aprender más',
+  form_message:'Mensaje',form_submit:'Enviar Mensaje',
+  form_confirm:'¡Gracias! Nos pondremos en contacto pronto. 💛',
+  footer_tagline:'Fundado en Mission High School · San Francisco, CA',
+  footer_copy:'© 2025 Finding Our Voice. Todos los derechos reservados.',
+  back_team:'← Volver al Equipo',founder_quote_label:'Lo que este programa significa para mí',
+  founder_contributions:'Contribuciones al Programa',
+  gil_role:'Co-Fundador y Director del Programa',
+  gil_bio1:'Gil creció navegando dos mundos: el barrio de Mission District que llamaba hogar y el sistema escolar estadounidense que a menudo se sentía extraño. Como estudiante en Mission High, notó que los estudiantes recién llegados como él eran invisibles en el salón de clases, luchando con el inglés, sin saber cómo pedir ayuda.',
+  gil_bio2:'En sus primeras semanas en Mission High, sintió el peso de esa confusión en carne propia. Esa experiencia encendió un fuego. Gil co-fundó Encontrando Nuestra Voz para asegurarse de que ningún estudiante tuviera que sentirse tan solo.',
+  gil_bio3:'Se asoció con 826 Valencia, obtuvo una beca de $10,000 de Youth Funding Youth Ideas y construyó el programa desde cero junto con Yuli, Emir y Darwing.',
+  gil_bio4:'Hoy, Encontrando Nuestra Voz es la base que desearía que hubiera existido cuando llegó. Gil continúa liderando el programa, manteniéndolo centrado en los estudiantes y en crecimiento.',
+  gil_quote:'“Comencé esto porque sabía exactamente lo que se sentía estar perdido en una escuela que no te veía.”',
+  gil_c1:'Fundó Encontrando Nuestra Voz y formó su visión principal',gil_c2:'Obtuvo la beca de $10,000 de Youth Funding Youth Ideas',
+  gil_c3:'Construyó la asociación con 826 Valencia desde cero',gil_c4:'Hizo crecer el programa para servir a más de 30 estudiantes recién llegados',
+  yuli_role:'Co-Fundadora y Líder de Currículo',
+  yuli_bio1:'Yuli trajo su corazón y sus raíces comunitarias a Encontrando Nuestra Voz desde el primer día. Creciendo rodeada de familias que navegaban la inmigración, las barreras lingüísticas y un sistema educativo que no fue construido para ellas, entendió profundamente lo que los estudiantes recién llegados necesitaban: no solo lecciones de idioma, sino pertenencia.',
+  yuli_bio2:'Como co-fundadora, Yuli ayudó a dar forma al currículo del programa desde cero, asegurándose de que cada lección se sintiera culturalmente relevante, acogedora y fundamentada en las experiencias reales de los estudiantes.',
+  yuli_bio3:'Ella creía que aprender inglés nunca debería significar perderte a ti mismo. Esa creencia se convirtió en el corazón de cómo Encontrando Nuestra Voz enseña el idioma.',
+  yuli_bio4:'El enfoque de Yuli hacia el currículo trajo calidez y orgullo cultural a cada sesión, convirtiendo lo que podría haber sido un programa genérico de ESL en algo a lo que los estudiantes realmente esperaban.',
+  yuli_quote:'“El idioma es un puente, no una barrera. Construimos este programa para que ese puente sea más fácil de cruzar.”',
+  yuli_c1:'Diseñó el currículo bilingüe y culturalmente receptivo del programa',yuli_c2:'Creó planes de lección arraigados en las experiencias reales de los estudiantes',
+  yuli_c3:'Defendió la creencia de que la identidad y el aprendizaje del idioma van de la mano',yuli_c4:'Hizo que Encontrando Nuestra Voz se sintiera como un hogar',
+  emir_role:'Co-Fundador y Líder de Mentoría entre Pares',
+  emir_bio1:'Emir llegó a Mission High como recién llegado él mismo, y esa experiencia se convirtió en la brújula para todo lo que contribuyó a Encontrando Nuestra Voz. Sabía lo que significaba sentarse en un salón de clases y no entender una sola palabra.',
+  emir_bio2:'Cuando Gil propuso la idea, Emir se sumó de inmediato. No solo porque quería ayudar a los estudiantes a sobrevivir el sistema, sino porque quería ayudarlos a prosperar en él.',
+  emir_bio3:'Emir se centró en construir el lado de mentoría entre pares del programa, conectando a estudiantes mayores con los recién llegados para crear el tipo de apoyo que deseaba haber tenido.',
+  emir_bio4:'Su experiencia vivida le dio al programa algo que ningún entrenador externo podría proporcionar: credibilidad real con los estudiantes a los que servía.',
+  emir_quote:'“Yo fui ese estudiante una vez. Sé la diferencia que puede hacer una persona que cree en ti.”',
+  emir_c1:'Construyó y dirige el programa de mentoría entre pares',emir_c2:'Empareja a estudiantes mayores con recién llegados para apoyo individual',
+  emir_c3:'Capacitó a mentores estudiantiles para liderar con empatía y conciencia cultural',emir_c4:'Aportó credibilidad y experiencia vivida a cada aspecto del programa',
+  darwing_role:'Co-Fundador y Líder de Operaciones',
+  darwing_bio1:'Darwing es el constructor del grupo, el que preguntaba "¿cómo hacemos que esto realmente funcione?" en cada paso. Mientras sus co-fundadores aportaban visión y experiencia vivida, Darwing aportó estructura, organización y el impulso para convertir una gran idea en un programa real.',
+  darwing_bio2:'Trabajó estrechamente con 826 Valencia para coordinar la logística, gestionó el proceso de solicitud de becas y se aseguró de que lo que el equipo prometió, lo entregara.',
+  darwing_bio3:'Darwing cree profundamente que los programas liderados por estudiantes son más poderosos que cualquier cosa diseñada desde afuera, porque provienen de una comprensión real de lo que los estudiantes realmente enfrentan.',
+  darwing_bio4:'Detrás de cada sesión exitosa, informe de beca y evento comunitario está Darwing asegurándose de que los detalles estén manejados. Encontrando Nuestra Voz funciona porque él lo hace funcionar.',
+  darwing_quote:'“Liderado por estudiantes significa que realmente sabemos lo que los estudiantes necesitan. Ese es nuestro superpoder.”',
+  darwing_c1:'Gestiona las operaciones del programa, la programación y la logística',darwing_c2:'Lideró el proceso de solicitud de beca de Youth Funding Youth Ideas',
+  darwing_c3:'Coordina con 826 Valencia en todas las actividades de asociación',darwing_c4:'Mantiene el programa funcionando a tiempo, dentro del presupuesto y en la misión'
+}
+};
 
-<!-- ═══════════════════════════════════════════════
-     NAVBAR
-═══════════════════════════════════════════════ -->
+/* ── STATE ── */
+let lang = localStorage.getItem('fov-lang') || 'en';
+let route = 'home';
+function t(k){ return (T[lang]&&T[lang][k]) || (T.en[k]) || k; }
+
+/* ── SVG HELPERS ── */
+const svgWave = `<svg viewBox="0 0 220 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M3 12 Q22 2 44 12 Q66 22 88 9 Q110 0 132 12 Q154 22 176 9 Q198 0 217 12" stroke="#F5C132" stroke-width="3" fill="none" stroke-linecap="round"/></svg>`;
+const svgBubble = `<svg viewBox="0 0 100 78" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 5 Q6 3 12 3 L84 5 Q92 5 92 14 L90 50 Q90 58 82 58 L54 58 L42 74 L40 58 L18 58 Q10 58 10 50 L8 14 Q8 8 8 5Z" stroke="#F5C132" stroke-width="2.5" fill="rgba(245,193,50,0.14)" stroke-linejoin="round"/><circle cx="34" cy="34" r="5" fill="#F5C132"/><circle cx="50" cy="34" r="5" fill="#F5C132"/><circle cx="66" cy="34" r="5" fill="#F5C132"/></svg>`;
+const svgStar = `<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M30 4 L34 20 L50 20 L37 30 L42 46 L30 36 L18 46 L23 30 L10 20 L26 20Z" stroke="#F5C132" stroke-width="2" fill="rgba(245,193,50,0.2)" stroke-linejoin="round"/></svg>`;
+const svgPencil = `<svg viewBox="0 0 44 130" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="12" y="6" width="20" height="86" rx="3" fill="#F5C132" stroke="#3D2B1A" stroke-width="2.5"/><polygon points="12,92 32,92 22,122" fill="#FDF6E3" stroke="#3D2B1A" stroke-width="2.5"/><rect x="12" y="6" width="20" height="14" rx="3" fill="#7A4F2E" stroke="#3D2B1A" stroke-width="2.5"/><line x1="22" y1="113" x2="22" y2="122" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round"/><line x1="16" y1="28" x2="28" y2="28" stroke="rgba(61,43,26,0.35)" stroke-width="1.5" stroke-linecap="round"/><line x1="16" y1="40" x2="28" y2="40" stroke="rgba(61,43,26,0.35)" stroke-width="1.5" stroke-linecap="round"/></svg>`;
+const svgBook = `<svg viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 14 Q6 10 10 10 L24 10 Q27 10 27 13 L27 44 Q24 42 22 42 L10 42 Q6 42 6 38Z" fill="#F5C132" stroke="#3D2B1A" stroke-width="2.2" stroke-linejoin="round"/><path d="M48 14 Q48 10 44 10 L30 10 Q27 10 27 13 L27 44 Q30 42 32 42 L44 42 Q48 42 48 38Z" fill="rgba(245,193,50,0.28)" stroke="#3D2B1A" stroke-width="2.2" stroke-linejoin="round"/><line x1="11" y1="19" x2="23" y2="19" stroke="#3D2B1A" stroke-width="1.8" stroke-linecap="round"/><line x1="11" y1="25" x2="23" y2="25" stroke="#3D2B1A" stroke-width="1.8" stroke-linecap="round"/><line x1="11" y1="31" x2="19" y2="31" stroke="#3D2B1A" stroke-width="1.8" stroke-linecap="round"/></svg>`;
+const svgPeople = `<svg viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="27" cy="17" r="8" fill="#F5C132" stroke="#3D2B1A" stroke-width="2.2"/><path d="M10 46 Q10 32 27 32 Q44 32 44 46" fill="rgba(245,193,50,0.28)" stroke="#3D2B1A" stroke-width="2.2" stroke-linecap="round"/><circle cx="11" cy="20" r="5.5" fill="rgba(245,193,50,0.5)" stroke="#3D2B1A" stroke-width="1.8"/><circle cx="43" cy="20" r="5.5" fill="rgba(245,193,50,0.5)" stroke="#3D2B1A" stroke-width="1.8"/></svg>`;
+const svgCap = `<svg viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="27,8 52,22 27,36 2,22" fill="#F5C132" stroke="#3D2B1A" stroke-width="2.2" stroke-linejoin="round"/><path d="M14 28 L14 41 Q14 47 27 47 Q40 47 40 41 L40 28" fill="rgba(245,193,50,0.28)" stroke="#3D2B1A" stroke-width="2.2" stroke-linejoin="round"/><line x1="46" y1="22" x2="46" y2="38" stroke="#3D2B1A" stroke-width="2.2" stroke-linecap="round"/><circle cx="46" cy="41" r="3.5" fill="#F5C132" stroke="#3D2B1A" stroke-width="1.8"/></svg>`;
+
+/* ── NAV ── */
+function buildNav(){
+  const links=[
+    {r:'about',k:'nav_about'},{r:'programs',k:'nav_programs'},
+    {r:'voices',k:'nav_voices'},{r:'resources',k:'nav_resources'},
+    {r:'team',k:'nav_team'}
+  ];
+  const isTeamRoute=['team','gil','yuli','emir','darwing'].includes(route);
+  const navLinks=links.map(l=>`<li><a href="#${l.r}" data-route="${l.r}" class="${route===l.r||(l.r==='team'&&isTeamRoute)?'active':''}">${t(l.k)}</a></li>`).join('');
+  const drawerLinks=links.map(l=>`<a href="#${l.r}" data-route="${l.r}">${t(l.k)}</a>`).join('');
+  return `
 <nav class="nav" id="navbar">
-  <a href="#" class="nav__logo">FOV<sup>®</sup></a>
-
-  <ul class="nav__links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#programs">Programs</a></li>
-    <li><a href="#voices">Student Voices</a></li>
-    <li><a href="#resources">Resources</a></li>
-    <li><a href="#get-involved">Get Involved</a></li>
-  </ul>
-
-  <a href="#get-involved" class="btn-pill nav__cta">Get Involved</a>
-
+  <a href="#home" data-route="home" class="nav__logo">FOV</a>
+  <ul class="nav__links">${navLinks}</ul>
+  <div class="nav__right">
+    <button class="lang-toggle" id="lang-toggle" aria-label="Switch language">${t('lang_toggle')}</button>
+    <a href="#get-involved" data-route="get-involved" class="btn-pill nav__cta">${t('nav_involved')}</a>
+  </div>
   <button class="nav__hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
-
   <div class="nav__drawer" id="drawer">
-    <a href="#about"        onclick="closeDrawer()">About</a>
-    <a href="#programs"     onclick="closeDrawer()">Programs</a>
-    <a href="#voices"       onclick="closeDrawer()">Student Voices</a>
-    <a href="#resources"    onclick="closeDrawer()">Resources</a>
-    <a href="#get-involved" onclick="closeDrawer()">Get Involved →</a>
+    ${drawerLinks}
+    <a href="#get-involved" data-route="get-involved">${t('nav_involved')}</a>
+    <button class="lang-toggle" id="lang-toggle-mobile">${t('lang_toggle')}</button>
   </div>
-</nav>
+</nav>`;
+}
 
+/* ── FOOTER ── */
+function buildFooter(){
+  return `
+<footer class="footer">
+  <div>
+    <span class="footer__brand" data-route="home">${lang==='en'?'Finding Our Voice':'Encontrando Nuestra Voz'}</span>
+    <span class="footer__tagline">${t('footer_tagline')}</span>
+  </div>
+  <nav class="footer__links" aria-label="Footer">
+    <a href="#about" data-route="about">${t('nav_about')}</a>
+    <a href="#programs" data-route="programs">${t('nav_programs')}</a>
+    <a href="#voices" data-route="voices">${t('nav_voices')}</a>
+    <a href="#team" data-route="team">${t('nav_team')}</a>
+    <a href="#resources" data-route="resources">${t('nav_resources')}</a>
+    <a href="#get-involved" data-route="get-involved">${t('nav_involved')}</a>
+    <a href="mailto:info@findingourvoice.org">Email</a>
+    <a href="https://www.linkedin.com/company/finding-our-voice-sf/about/" target="_blank" rel="noopener">LinkedIn</a>
+  </nav>
+  <span class="footer__copy">${t('footer_copy')}</span>
+</footer>`;
+}
 
-<!-- ═══════════════════════════════════════════════
-     HERO
-═══════════════════════════════════════════════ -->
+/* ── PAGES ── */
+function pageHome(){
+  return `
 <section class="hero" id="top">
-
-  <!-- Background arc lines -->
   <svg class="hero__arcs" viewBox="0 0 1400 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-    <path d="M0 250 Q350 80 700 250 T1400 250"  stroke="#F5C132" stroke-width="2" fill="none"/>
+    <path d="M0 250 Q350 80 700 250 T1400 250" stroke="#F5C132" stroke-width="2" fill="none"/>
     <path d="M0 450 Q350 280 700 450 T1400 450" stroke="#F5C132" stroke-width="2" fill="none"/>
     <path d="M0 650 Q350 480 700 650 T1400 650" stroke="#F5C132" stroke-width="2" fill="none"/>
-    <circle cx="80"  cy="100" r="40" stroke="#F5C132" stroke-width="1.5" fill="none"/>
+    <circle cx="80" cy="100" r="40" stroke="#F5C132" stroke-width="1.5" fill="none"/>
     <circle cx="1320" cy="700" r="60" stroke="#F5C132" stroke-width="1.5" fill="none"/>
-    <circle cx="1200" cy="120" r="25" stroke="#F5C132" stroke-width="1.5" fill="none"/>
-    <!-- stars -->
-    <path d="M1100 200 L1108 220 L1090 208 L1110 208 L1092 220Z" fill="#F5C132"/>
-    <path d="M200  600 L206  616 L192  607 L208  607 L194  616Z" fill="#F5C132"/>
   </svg>
-
   <div class="hero__content">
-
     <div class="hero__headline-wrap">
-
-      <!-- Hand-drawn speech bubble -->
-      <svg class="hero__bubble" viewBox="0 0 100 78" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path d="M8 5 Q6 3 12 3 L84 5 Q92 5 92 14 L90 50 Q90 58 82 58 L54 58 L42 74 L40 58 L18 58 Q10 58 10 50 L8 14 Q8 8 8 5Z"
-              stroke="#F5C132" stroke-width="2.5" fill="rgba(245,193,50,0.14)" stroke-linejoin="round"/>
-        <circle cx="34" cy="34" r="5" fill="#F5C132"/>
-        <circle cx="50" cy="34" r="5" fill="#F5C132"/>
-        <circle cx="66" cy="34" r="5" fill="#F5C132"/>
-      </svg>
-
-      <!-- Floating star -->
-      <svg class="hero__star" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path d="M30 4 L34 20 L50 20 L37 30 L42 46 L30 36 L18 46 L23 30 L10 20 L26 20Z"
-              stroke="#F5C132" stroke-width="2" fill="rgba(245,193,50,0.2)" stroke-linejoin="round"/>
-      </svg>
-
+      <div class="hero__bubble">${svgBubble}</div>
+      <div class="hero__star">${svgStar}</div>
       <h1 class="hero__headline">
-        <span class="g">FINDING</span>
-        <span class="w">OUR</span>
-        <span class="g">VOICE</span>
+        <span class="g">${t('hero_line1')}</span>
+        <span class="w">${t('hero_line2')}</span>
+        <span class="g">${t('hero_line3')}</span>
       </h1>
     </div>
-
-    <p class="hero__sub">
-      Supporting newcomer students at Mission High School,<br>
-      in partnership with <strong style="color:var(--gold);">826 Valencia</strong>
-    </p>
-
+    <p class="hero__sub">${t('hero_sub')}</p>
     <div class="hero__btns">
-      <a href="#about" class="btn-outline">Our Story</a>
-      <a href="#get-involved" class="btn-pill">Get Involved</a>
+      <a href="#about" data-route="about" class="btn-outline">${t('hero_btn_story')}</a>
+      <a href="#get-involved" data-route="get-involved" class="btn-pill">${t('hero_btn_involved')}</a>
     </div>
   </div>
 </section>
 
-
-<!-- ═══════════════════════════════════════════════
-     IMPACT STRIP
-═══════════════════════════════════════════════ -->
 <section class="impact" id="impact">
   <div class="impact__grid">
-
     <div class="impact__item">
       <span class="impact__num">30+</span>
-      <span class="impact__label">Students Helped</span>
+      <span class="impact__label">${t('impact_students')}</span>
     </div>
-
     <div class="impact__item">
       <span class="impact__num">$10K</span>
-      <span class="impact__label">
-        Grant Received
-        <small>Youth Funding Youth Ideas</small>
-      </span>
+      <span class="impact__label">${t('impact_grant')}<small>${t('impact_grant_sub')}</small></span>
     </div>
-
     <div class="impact__item">
       <span class="impact__num">3</span>
-      <span class="impact__label">
-        Student Co-founders
-        <small>Yuli · Emir · Darwing</small>
-      </span>
+      <span class="impact__label">${t('impact_founders')}<small>${t('impact_founders_sub')}</small></span>
     </div>
-
   </div>
 </section>
 
-
-<!-- ═══════════════════════════════════════════════
-     MISSION STATEMENT
-═══════════════════════════════════════════════ -->
-<section class="mission" id="about">
+<section class="mission">
   <div class="mission__inner">
-
-    <span class="eyebrow" style="color:var(--gold);">Our Mission</span>
-
+    <span class="eyebrow" style="color:var(--gold)">${t('mission_eyebrow')}</span>
     <p class="mission__text">
-      Finding Our Voice supports newcomer students in learning
-      English and building community, so
-      <span class="mission__highlight">every&nbsp;voice
-        <!-- wavy underline -->
-        <svg viewBox="0 0 180 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M3 12 Q18 3 36 12 Q54 21 72 9 Q90 0 108 12 Q126 22 144 9 Q162 0 177 12"
-                stroke="#F5C132" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-        </svg>
+      ${t('mission_pre')}
+      <span class="mission__highlight">${t('mission_highlight')}
+        <svg viewBox="0 0 180 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M3 12 Q18 3 36 12 Q54 21 72 9 Q90 0 108 12 Q126 22 144 9 Q162 0 177 12" stroke="#F5C132" stroke-width="3.5" fill="none" stroke-linecap="round"/></svg>
       </span>
-      gets heard.
+      ${t('mission_post')}
     </p>
-
-    <!-- Pencil SVG -->
-    <svg class="mission__pencil" viewBox="0 0 44 130" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <rect x="12" y="6" width="20" height="86" rx="3" fill="#F5C132" stroke="#3D2B1A" stroke-width="2.5"/>
-      <polygon points="12,92 32,92 22,122" fill="#FDF6E3" stroke="#3D2B1A" stroke-width="2.5"/>
-      <rect x="12" y="6"  width="20" height="14" rx="3" fill="#7A4F2E" stroke="#3D2B1A" stroke-width="2.5"/>
-      <line x1="22" y1="113" x2="22" y2="122" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round"/>
-      <line x1="16" y1="28" x2="28" y2="28" stroke="rgba(61,43,26,0.35)" stroke-width="1.5" stroke-linecap="round"/>
-      <line x1="16" y1="40" x2="28" y2="40" stroke="rgba(61,43,26,0.35)" stroke-width="1.5" stroke-linecap="round"/>
-      <line x1="16" y1="52" x2="28" y2="52" stroke="rgba(61,43,26,0.35)" stroke-width="1.5" stroke-linecap="round"/>
-    </svg>
-
+    ${svgPencil.replace(/^<svg/,'<svg class="mission__pencil"')}
   </div>
-</section>
+</section>`;
+}
 
-
-<!-- ═══════════════════════════════════════════════
-     ORIGIN STORY
-═══════════════════════════════════════════════ -->
-<section class="story" id="story">
+function pageAbout(){
+  return `
+<section class="section-light" style="padding-top:5rem">
   <div class="story__inner">
-
-    <!-- Left: narrative -->
     <div>
-      <span class="eyebrow" style="color:var(--brown-mid);">How We Started</span>
-      <h2 class="story__headline">From Conversation Partners<br>to Finding Our Voice</h2>
-
+      <span class="eyebrow" style="color:var(--brown-mid)">${t('story_eyebrow')}</span>
+      <h2 class="story__headline">${t('story_headline')}</h2>
       <div class="story__body">
-        <p>
-          It started with a simple idea: <em>what if students helped other students?</em>
-          At Mission High School in San Francisco, a group of us noticed that newcomer
-          students (immigrants, refugees, and undocumented youth) were struggling to
-          find their footing in a new language and a new country.
-        </p>
-        <p>
-          We partnered with <strong>826 Valencia</strong>, San Francisco's beloved literacy
-          nonprofit, to launch an after-school conversation program. What began informally
-          grew into something real: a structured peer mentorship and English learning
-          initiative shaped entirely by students, for students.
-        </p>
-        <p>
-          In 2024, our program received a <strong>$10,000 grant</strong> from Youth Funding
-          Youth Ideas. Proof that what we built mattered. Today, Finding Our Voice
-          is the foundation newcomer students at Mission High didn't know they needed.
-        </p>
+        <p>${t('story_p1')}</p>
+        <p>${t('story_p2')}</p>
+        <p>${t('story_p3')}</p>
       </div>
-
       <div class="story__founders">
-        <span class="founder-chip">Gil Silva</span>
-        <span class="founder-chip">Yuli</span>
-        <span class="founder-chip">Emir</span>
-        <span class="founder-chip">Darwing</span>
+        <span class="founder-chip" data-route="gil">Gil Silva</span>
+        <span class="founder-chip" data-route="yuli">Yuli</span>
+        <span class="founder-chip" data-route="emir">Emir</span>
+        <span class="founder-chip" data-route="darwing">Darwing</span>
       </div>
     </div>
-
-    <!-- Right: timeline -->
     <div class="timeline">
-
       <div class="timeline__item">
         <div class="timeline__dot"></div>
         <span class="timeline__year">2022</span>
-        <div class="timeline__title">The Spark</div>
-        <p class="timeline__desc">Students at Mission High begin informal English conversation sessions with newcomer peers after school.</p>
+        <div class="timeline__title">${t('tl_2022_title')}</div>
+        <p class="timeline__desc">${t('tl_2022_desc')}</p>
       </div>
-
       <div class="timeline__item">
         <div class="timeline__dot"></div>
         <span class="timeline__year">2023</span>
-        <div class="timeline__title">826 Valencia Partnership</div>
-        <p class="timeline__desc">Official partnership with 826 Valencia brings structure, resources, and an entire community of educators behind the program.</p>
+        <div class="timeline__title">${t('tl_2023_title')}</div>
+        <p class="timeline__desc">${t('tl_2023_desc')}</p>
       </div>
-
       <div class="timeline__item">
         <div class="timeline__dot"></div>
         <span class="timeline__year">2024</span>
-        <div class="timeline__title">$10K Grant</div>
-        <p class="timeline__desc">Youth Funding Youth Ideas awards Finding Our Voice a $10,000 grant, validating the program's impact and expanding its reach.</p>
+        <div class="timeline__title">${t('tl_2024_title')}</div>
+        <p class="timeline__desc">${t('tl_2024_desc')}</p>
       </div>
-
       <div class="timeline__item">
         <div class="timeline__dot"></div>
-        <span class="timeline__year">Now</span>
-        <div class="timeline__title">Growing Impact</div>
-        <p class="timeline__desc">30+ students served, a dedicated founding team, and a blueprint for what student-led support can look like at any school.</p>
+        <span class="timeline__year">${t('tl_now')}</span>
+        <div class="timeline__title">${t('tl_now_title')}</div>
+        <p class="timeline__desc">${t('tl_now_desc')}</p>
       </div>
-
     </div>
   </div>
-</section>
+</section>`;
+}
 
-
-<!-- ═══════════════════════════════════════════════
-     STUDENT VOICES
-═══════════════════════════════════════════════ -->
-<section class="voices" id="voices">
-
+function pageTeam(){
+  const founders=[
+    {id:'gil',initials:'GS',name:'Gil Silva'},
+    {id:'yuli',initials:'Y',name:'Yuli'},
+    {id:'emir',initials:'E',name:'Emir'},
+    {id:'darwing',initials:'D',name:'Darwing'}
+  ];
+  const cards=founders.map(f=>`
+    <div class="team-card" data-route="${f.id}">
+      <div class="team-card__avatar">${f.initials}</div>
+      <div class="team-card__name">${f.name}</div>
+      <div class="team-card__role">${t(f.id+'_role')}</div>
+      <p class="team-card__blurb">${t(f.id+'_short')}</p>
+      <a class="btn-pill team-card__btn" data-route="${f.id}">${t('team_view')}</a>
+    </div>`).join('');
+  return `
+<section class="section-dark">
   <div class="section-hd">
-    <span class="eyebrow">Stories from the classroom</span>
-    <h2 class="section-hd__title">THEIR WORDS.<br>THEIR WORLD.</h2>
-    <!-- gold wavy underline -->
-    <svg class="section-hd__wave" viewBox="0 0 220 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path d="M3 12 Q22 2 44 12 Q66 22 88 9 Q110 0 132 12 Q154 22 176 9 Q198 0 217 12"
-            stroke="#F5C132" stroke-width="3" fill="none" stroke-linecap="round"/>
-    </svg>
+    <span class="eyebrow">${t('team_eyebrow')}</span>
+    <h2 class="section-hd__title">${t('team_headline_1')}<br>${t('team_headline_2')}</h2>
+    ${svgWave.replace(/^<svg/,'<svg class="section-hd__wave"')}
+    <p class="team__intro">${t('team_intro')}</p>
   </div>
+  <div class="team-grid">${cards}</div>
+</section>`;
+}
 
+function pageFounder(id){
+  const initials={gil:'GS',yuli:'Y',emir:'E',darwing:'D'}[id]||id[0].toUpperCase();
+  const name={gil:'Gil Silva',yuli:'Yuli',emir:'Emir',darwing:'Darwing'}[id]||id;
+  const contribs=[1,2,3,4].map(n=>`<li>${t(id+'_c'+n)}</li>`).join('');
+  return `
+<div class="founder-hero">
+  <div class="founder-hero__inner">
+    <div class="founder-hero__avatar">${initials}</div>
+    <h1 class="founder-hero__name">${name}</h1>
+    <div class="founder-hero__role">${t(id+'_role')}</div>
+  </div>
+</div>
+<div class="founder-body">
+  <div class="founder-body__inner">
+    <button class="btn-outline btn-outline--brown back-btn" data-route="team">${t('back_team')}</button>
+    <div class="founder-bios">
+      <p>${t(id+'_bio1')}</p>
+      <p>${t(id+'_bio2')}</p>
+      <p>${t(id+'_bio3')}</p>
+      <p>${t(id+'_bio4')}</p>
+    </div>
+    <div class="founder-quote">
+      <div class="founder-quote__label">${t('founder_quote_label')}</div>
+      <p class="founder-quote__text">${t(id+'_quote')}</p>
+    </div>
+    <div class="founder-contribs">
+      <h3 class="founder-contribs__title">${t('founder_contributions')}</h3>
+      <ul>${contribs}</ul>
+    </div>
+  </div>
+</div>`;
+}
+
+function pageVoices(){
+  return `
+<section class="section-dark">
+  <div class="section-hd">
+    <span class="eyebrow">${t('voices_eyebrow')}</span>
+    <h2 class="section-hd__title">${t('voices_headline_1')}<br>${t('voices_headline_2')}</h2>
+    <svg class="section-hd__wave" viewBox="0 0 220 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M3 12 Q22 2 44 12 Q66 22 88 9 Q110 0 132 12 Q154 22 176 9 Q198 0 217 12" stroke="#F5C132" stroke-width="3" fill="none" stroke-linecap="round"/></svg>
+  </div>
   <div class="voices__grid">
-
-    <div class="q-card">
-      <span class="q-card__mark">"</span>
-      <p class="q-card__text">
-        Before this program, I was afraid to speak in class. Now I raise my hand every day.
-        Finding Our Voice didn't just teach me English. It taught me that my voice matters.
-      </p>
-      <div class="q-card__footer">
-        <div class="q-card__avatar">A</div>
-        <span class="q-card__name">Newcomer Student, 10th Grade</span>
-      </div>
-    </div>
-
-    <div class="q-card">
-      <span class="q-card__mark">"</span>
-      <p class="q-card__text">
-        I came from El Salvador and didn't know anyone. The mentors made me feel like I
-        belonged. My English improved so fast because we practiced like friends, not like a class.
-      </p>
-      <div class="q-card__footer">
-        <div class="q-card__avatar">M</div>
-        <span class="q-card__name">Newcomer Student, 11th Grade</span>
-      </div>
-    </div>
-
-    <div class="q-card">
-      <span class="q-card__mark">"</span>
-      <p class="q-card__text">
-        I never thought about college until this program. Now I'm applying to five universities.
-        Someone who looked like me showed me it was possible.
-      </p>
-      <div class="q-card__footer">
-        <div class="q-card__avatar">K</div>
-        <span class="q-card__name">Program Graduate, Class of 2024</span>
-      </div>
-    </div>
-
+    <div class="q-card"><span class="q-card__mark">“</span><p class="q-card__text">${t('v1_text')}</p><div class="q-card__footer"><div class="q-card__avatar">A</div><span class="q-card__name">${t('v1_name')}</span></div></div>
+    <div class="q-card"><span class="q-card__mark">“</span><p class="q-card__text">${t('v2_text')}</p><div class="q-card__footer"><div class="q-card__avatar">M</div><span class="q-card__name">${t('v2_name')}</span></div></div>
+    <div class="q-card"><span class="q-card__mark">“</span><p class="q-card__text">${t('v3_text')}</p><div class="q-card__footer"><div class="q-card__avatar">K</div><span class="q-card__name">${t('v3_name')}</span></div></div>
   </div>
-</section>
+</section>`;
+}
 
-
-<!-- ═══════════════════════════════════════════════
-     HOW IT WORKS
-═══════════════════════════════════════════════ -->
-<section class="how" id="programs">
+function pagePrograms(){
+  return `
+<section class="section-light2">
   <div class="how__inner">
-
-    <div class="section-hd" style="text-align:left; margin-bottom:0;">
-      <span class="eyebrow" style="color:var(--brown-mid);">What We Do</span>
-      <h2 class="section-hd__title section-hd__title--dark">HOW IT<br>WORKS</h2>
-      <svg style="display:block; margin:0.6rem 0 0; width:200px;" viewBox="0 0 220 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path d="M3 12 Q22 2 44 12 Q66 22 88 9 Q110 0 132 12 Q154 22 176 9 Q198 0 217 12"
-              stroke="#F5C132" stroke-width="3" fill="none" stroke-linecap="round"/>
-      </svg>
+    <div class="section-hd section-hd--left">
+      <span class="eyebrow" style="color:var(--brown-mid)">${t('how_eyebrow')}</span>
+      <h2 class="section-hd__title section-hd__title--dark">${t('how_headline_1')}<br>${t('how_headline_2')}</h2>
+      <svg style="display:block;margin:.6rem 0 0;width:200px" viewBox="0 0 220 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M3 12 Q22 2 44 12 Q66 22 88 9 Q110 0 132 12 Q154 22 176 9 Q198 0 217 12" stroke="#F5C132" stroke-width="3" fill="none" stroke-linecap="round"/></svg>
     </div>
-
     <div class="how__grid">
-
-      <!-- Card 1 -->
-      <div class="how__card">
-        <svg class="how__icon" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <!-- open book -->
-          <path d="M6 14 Q6 10 10 10 L24 10 Q27 10 27 13 L27 44 Q24 42 22 42 L10 42 Q6 42 6 38Z"
-                fill="#F5C132" stroke="#3D2B1A" stroke-width="2.2" stroke-linejoin="round"/>
-          <path d="M48 14 Q48 10 44 10 L30 10 Q27 10 27 13 L27 44 Q30 42 32 42 L44 42 Q48 42 48 38Z"
-                fill="rgba(245,193,50,0.28)" stroke="#3D2B1A" stroke-width="2.2" stroke-linejoin="round"/>
-          <line x1="11" y1="19" x2="23" y2="19" stroke="#3D2B1A" stroke-width="1.8" stroke-linecap="round"/>
-          <line x1="11" y1="25" x2="23" y2="25" stroke="#3D2B1A" stroke-width="1.8" stroke-linecap="round"/>
-          <line x1="11" y1="31" x2="19" y2="31" stroke="#3D2B1A" stroke-width="1.8" stroke-linecap="round"/>
-        </svg>
-        <h3 class="how__card-title">Learn English</h3>
-        <p class="how__card-body">Dynamic, culturally relevant lessons led by peers who understand where you're coming from. Not just grammar drills.</p>
-      </div>
-
-      <!-- Card 2 -->
-      <div class="how__card">
-        <svg class="how__icon" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <!-- people -->
-          <circle cx="27" cy="17" r="8" fill="#F5C132" stroke="#3D2B1A" stroke-width="2.2"/>
-          <path d="M10 46 Q10 32 27 32 Q44 32 44 46" fill="rgba(245,193,50,0.28)" stroke="#3D2B1A" stroke-width="2.2" stroke-linecap="round"/>
-          <circle cx="11" cy="20" r="5.5" fill="rgba(245,193,50,0.5)" stroke="#3D2B1A" stroke-width="1.8"/>
-          <circle cx="43" cy="20" r="5.5" fill="rgba(245,193,50,0.5)" stroke="#3D2B1A" stroke-width="1.8"/>
-          <path d="M3 44 Q3 34 11 34" stroke="#3D2B1A" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-          <path d="M51 44 Q51 34 43 34" stroke="#3D2B1A" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-        </svg>
-        <h3 class="how__card-title">Build Community</h3>
-        <p class="how__card-body">Make friends, find mentors, and connect with others who share your experience. You are not alone in this journey.</p>
-      </div>
-
-      <!-- Card 3 -->
-      <div class="how__card">
-        <svg class="how__icon" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <!-- graduation cap -->
-          <polygon points="27,8 52,22 27,36 2,22" fill="#F5C132" stroke="#3D2B1A" stroke-width="2.2" stroke-linejoin="round"/>
-          <path d="M14 28 L14 41 Q14 47 27 47 Q40 47 40 41 L40 28"
-                fill="rgba(245,193,50,0.28)" stroke="#3D2B1A" stroke-width="2.2" stroke-linejoin="round"/>
-          <line x1="46" y1="22" x2="46" y2="38" stroke="#3D2B1A" stroke-width="2.2" stroke-linecap="round"/>
-          <circle cx="46" cy="41" r="3.5" fill="#F5C132" stroke="#3D2B1A" stroke-width="1.8"/>
-        </svg>
-        <h3 class="how__card-title">Pursue College</h3>
-        <p class="how__card-body">Real guidance on applications, financial aid, and what higher education looks like, even if no one in your family has been before.</p>
-      </div>
-
+      <div class="how__card"><div class="how__icon">${svgBook}</div><h3 class="how__card-title">${t('how1_title')}</h3><p class="how__card-body">${t('how1_body')}</p></div>
+      <div class="how__card"><div class="how__icon">${svgPeople}</div><h3 class="how__card-title">${t('how2_title')}</h3><p class="how__card-body">${t('how2_body')}</p></div>
+      <div class="how__card"><div class="how__icon">${svgCap}</div><h3 class="how__card-title">${t('how3_title')}</h3><p class="how__card-body">${t('how3_body')}</p></div>
     </div>
   </div>
+</section>`;
+}
+
+function pageResources(){
+  const resLinks={
+    res1:'https://www.duolingo.com',
+    res2:'https://www.thedream.us',
+    res3:'https://www.ilrc.org',
+    res4:'https://826valencia.org'
+  };
+  const cards=[1,2,3,4].map(n=>`
+    <div class="resource-card">
+      <h3 class="resource-card__title">${t('res'+n+'_title')}</h3>
+      <p class="resource-card__body">${t('res'+n+'_body')}</p>
+      <a href="${resLinks['res'+n]}" target="_blank" rel="noopener" class="resource-card__link">${t('res_visit')} ${t('res'+n+'_link')} ↗</a>
+    </div>`).join('');
+  return `
+<section class="section-light">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="section-hd section-hd--left">
+      <span class="eyebrow" style="color:var(--brown-mid)">${t('res_eyebrow')}</span>
+      <h2 class="section-hd__title section-hd__title--dark">${t('res_headline')}</h2>
+      <svg style="display:block;margin:.6rem 0 0;width:200px" viewBox="0 0 220 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M3 12 Q22 2 44 12 Q66 22 88 9 Q110 0 132 12 Q154 22 176 9 Q198 0 217 12" stroke="#F5C132" stroke-width="3" fill="none" stroke-linecap="round"/></svg>
+      <p style="margin-top:1.2rem;font-size:1rem;color:var(--brown-mid);max-width:600px">${t('res_intro')}</p>
+    </div>
+    <div class="resource-grid">${cards}</div>
+  </div>
 </section>
-
-
-<!-- ═══════════════════════════════════════════════
-     PARTNERS & RECOGNITION
-═══════════════════════════════════════════════ -->
-<section class="partners" id="resources">
-
-  <p class="partners__label">Partners &amp; Recognition</p>
-
+<section class="section-dark" style="padding:5rem 2rem">
+  <p class="partners__label">${t('partners_label')}</p>
   <div class="partners__row">
-
-    <!-- 826 Valencia -->
     <div class="p-badge">
-      <svg viewBox="0 0 70 54" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:56px;" aria-hidden="true">
-        <rect x="4" y="4" width="62" height="46" rx="6"
-              fill="rgba(245,193,50,0.12)" stroke="#F5C132" stroke-width="2"/>
-        <text x="35" y="35" text-anchor="middle"
-              font-family="'Barlow Condensed', sans-serif" font-weight="800"
-              font-size="22" fill="#F5C132">826</text>
-      </svg>
-      <span class="p-badge__name">826 Valencia</span>
-      <span class="p-badge__sub">Literacy &amp; Tutoring Partner</span>
+      <svg viewBox="0 0 70 54" fill="none" style="width:50px" aria-hidden="true"><rect x="4" y="4" width="62" height="46" rx="6" fill="rgba(245,193,50,0.12)" stroke="#F5C132" stroke-width="2"/><text x="35" y="35" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-weight="800" font-size="22" fill="#F5C132">826</text></svg>
+      <span class="p-badge__name">${t('p1_name')}</span><span class="p-badge__sub">${t('p1_sub')}</span>
     </div>
-
-    <!-- Youth Funding Youth Ideas -->
     <div class="p-badge">
-      <svg viewBox="0 0 70 54" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:56px;" aria-hidden="true">
-        <circle cx="35" cy="27" r="24"
-                fill="rgba(245,193,50,0.12)" stroke="#F5C132" stroke-width="2"/>
-        <path d="M22 27 L30 35 L48 18" stroke="#F5C132" stroke-width="3"
-              stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      <span class="p-badge__name">Youth Funding Youth Ideas</span>
-      <span class="p-badge__sub">$10,000 Grant Recipient</span>
+      <svg viewBox="0 0 70 54" fill="none" style="width:50px" aria-hidden="true"><circle cx="35" cy="27" r="24" fill="rgba(245,193,50,0.12)" stroke="#F5C132" stroke-width="2"/><path d="M22 27 L30 35 L48 18" stroke="#F5C132" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="p-badge__name">${t('p2_name')}</span><span class="p-badge__sub">${t('p2_sub')}</span>
     </div>
-
-    <!-- Mission High School -->
     <div class="p-badge">
-      <svg viewBox="0 0 70 54" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:56px;" aria-hidden="true">
-        <!-- star -->
-        <path d="M35 6 L39 18 L52 18 L42 26 L46 38 L35 30 L24 38 L28 26 L18 18 L31 18Z"
-              fill="rgba(245,193,50,0.14)" stroke="#F5C132" stroke-width="2" stroke-linejoin="round"/>
-      </svg>
-      <span class="p-badge__name">Mission High School</span>
-      <span class="p-badge__sub">San Francisco, CA</span>
+      <svg viewBox="0 0 70 54" fill="none" style="width:50px" aria-hidden="true"><path d="M35 6 L39 18 L52 18 L42 26 L46 38 L35 30 L24 38 L28 26 L18 18 L31 18Z" fill="rgba(245,193,50,0.14)" stroke="#F5C132" stroke-width="2" stroke-linejoin="round"/></svg>
+      <span class="p-badge__name">${t('p3_name')}</span><span class="p-badge__sub">${t('p3_sub')}</span>
     </div>
-
   </div>
-</section>
+</section>`;
+}
 
-
-<!-- ═══════════════════════════════════════════════
-     GET INVOLVED
-═══════════════════════════════════════════════ -->
-<section class="cta" id="get-involved">
+function pageGetInvolved(){
+  return `
+<section class="cta">
   <div class="cta__inner">
-
-    <span class="eyebrow" style="color:var(--gold); font-size:0.8rem; letter-spacing:0.22em;">Make a Difference</span>
-
-    <h2 class="cta__headline">JOIN THE<br>MOVEMENT</h2>
-
-    <p class="cta__sub">
-      Every student deserves the chance to find their voice.
-      Here's how you can help make that happen.
-    </p>
-
+    <span class="eyebrow" style="color:var(--gold);font-size:.8rem;letter-spacing:.22em">${t('cta_eyebrow')}</span>
+    <h2 class="cta__headline">${t('cta_headline_1')}<br>${t('cta_headline_2')}</h2>
+    <p class="cta__sub">${t('cta_sub')}</p>
     <div class="cta__paths">
-
       <div class="cta__card">
-        <!-- volunteer icon -->
-        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:44px; margin:0 auto 1rem; display:block;" aria-hidden="true">
-          <circle cx="22" cy="13" r="7.5" fill="rgba(245,193,50,0.2)" stroke="#F5C132" stroke-width="2"/>
-          <path d="M6 42 Q6 28 22 28 Q38 28 38 42" fill="rgba(245,193,50,0.1)" stroke="#F5C132" stroke-width="2" stroke-linecap="round"/>
-          <path d="M27 20 L34 18 L36 26" stroke="#F5C132" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <h3 class="cta__card-title">Volunteer</h3>
-        <p class="cta__card-desc">Join as a conversation partner or mentor. Any language skills welcome.</p>
-        <a href="mailto:info@findingourvoice.org?subject=I want to volunteer" class="btn-pill">Sign Up</a>
+        <svg viewBox="0 0 44 44" fill="none" style="width:42px;margin:0 auto 1rem;display:block" aria-hidden="true"><circle cx="22" cy="13" r="7.5" fill="rgba(245,193,50,0.2)" stroke="#F5C132" stroke-width="2"/><path d="M6 42 Q6 28 22 28 Q38 28 38 42" fill="rgba(245,193,50,0.1)" stroke="#F5C132" stroke-width="2" stroke-linecap="round"/></svg>
+        <h3 class="cta__card-title">${t('vol_title')}</h3>
+        <p class="cta__card-desc">${t('vol_desc')}</p>
+        <a href="mailto:volunteer@findingourvoice.org?subject=I want to volunteer" class="btn-pill">${t('vol_btn')}</a>
       </div>
-
       <div class="cta__card">
-        <!-- donate icon -->
-        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:44px; margin:0 auto 1rem; display:block;" aria-hidden="true">
-          <path d="M22 40 L6 24 Q2 16 10 12 Q16 9 22 18 Q28 9 34 12 Q42 16 38 24Z"
-                fill="rgba(245,193,50,0.2)" stroke="#F5C132" stroke-width="2" stroke-linejoin="round"/>
-        </svg>
-        <h3 class="cta__card-title">Donate</h3>
-        <p class="cta__card-desc">Your contribution funds resources, events, and college prep materials.</p>
-        <a href="mailto:info@findingourvoice.org?subject=I want to donate" class="btn-pill">Give Now</a>
+        <svg viewBox="0 0 44 44" fill="none" style="width:42px;margin:0 auto 1rem;display:block" aria-hidden="true"><path d="M22 40 L6 24 Q2 16 10 12 Q16 9 22 18 Q28 9 34 12 Q42 16 38 24Z" fill="rgba(245,193,50,0.2)" stroke="#F5C132" stroke-width="2" stroke-linejoin="round"/></svg>
+        <h3 class="cta__card-title">${t('don_title')}</h3>
+        <p class="cta__card-desc">${t('don_desc')}</p>
+        <a href="mailto:info@findingourvoice.org?subject=I want to donate" class="btn-pill">${t('don_btn')}</a>
       </div>
-
+    </div>
+    <div class="form-wrap">
+      <h3>${t('form_headline')}</h3>
+      <form id="contact-form" novalidate>
+        <div class="form-group">
+          <label for="fc-name">${t('form_name')}</label>
+          <input id="fc-name" type="text" name="name" required placeholder="${t('form_name')}"/>
+        </div>
+        <div class="form-group">
+          <label for="fc-email">${t('form_email')}</label>
+          <input id="fc-email" type="email" name="email" required placeholder="${t('form_email')}"/>
+        </div>
+        <div class="form-group">
+          <label for="fc-intent">${t('form_intent')}</label>
+          <select id="fc-intent" name="intent">
+            <option value="volunteer">${t('form_opt1')}</option>
+            <option value="donate">${t('form_opt2')}</option>
+            <option value="partner">${t('form_opt3')}</option>
+            <option value="learn">${t('form_opt4')}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="fc-msg">${t('form_message')}</label>
+          <textarea id="fc-msg" name="message" placeholder="${t('form_message')}"></textarea>
+        </div>
+        <button type="submit" class="btn-pill" style="width:100%;justify-content:center;padding:.85rem">${t('form_submit')}</button>
+      </form>
+      <div class="form-confirm" id="form-confirm">
+        <p>${t('form_confirm')}</p>
+      </div>
     </div>
   </div>
-</section>
+</section>`;
+}
 
+/* ── ROUTER ── */
+const ROUTES={
+  home:pageHome, about:pageAbout, team:pageTeam,
+  voices:pageVoices, programs:pagePrograms, resources:pageResources,
+  'get-involved':pageGetInvolved,
+  gil:()=>pageFounder('gil'), yuli:()=>pageFounder('yuli'),
+  emir:()=>pageFounder('emir'), darwing:()=>pageFounder('darwing')
+};
 
-<!-- ═══════════════════════════════════════════════
-     FOOTER
-═══════════════════════════════════════════════ -->
-<footer class="footer">
+function getRoute(){
+  const h=location.hash.replace('#','').trim();
+  return ROUTES[h]?h:'home';
+}
 
-  <div>
-    <span class="footer__brand">Finding Our Voice</span>
-    <span class="footer__tagline">Founded at Mission High School · San Francisco, CA</span>
-  </div>
+function navigate(r){
+  if(!ROUTES[r]) r='home';
+  route=r;
+  history.pushState(null,'',r==='home'?'#':'#'+r);
+  renderSite();
+  window.scrollTo({top:0,behavior:'instant'});
+}
 
-  <nav class="footer__links" aria-label="Footer">
-    <a href="#about">About</a>
-    <a href="#programs">Programs</a>
-    <a href="#voices">Student Voices</a>
-    <a href="#get-involved">Get Involved</a>
-    <a href="mailto:info@findingourvoice.org">Contact</a>
-    <a href="https://www.linkedin.com/company/finding-our-voice-sf/about/" target="_blank" rel="noopener">LinkedIn</a>
-    <a href="https://www.instagram.com" target="_blank" rel="noopener">Instagram</a>
-  </nav>
+function renderSite(){
+  const pageBuilder=ROUTES[route]||pageHome;
+  document.getElementById('site').innerHTML=
+    buildNav()+
+    `<main class="page-enter">${pageBuilder()}</main>`+
+    buildFooter();
+  document.documentElement.lang=lang;
+  // Scroll listener for nav shadow
+  const nav=document.getElementById('navbar');
+  const onScroll=()=>{nav&&(nav.style.boxShadow=window.scrollY>20?'0 4px 30px rgba(0,0,0,0.5)':'0 2px 20px rgba(0,0,0,0.35)')};
+  window.removeEventListener('scroll',window._fovScroll||onScroll);
+  window._fovScroll=onScroll;
+  window.addEventListener('scroll',onScroll,{passive:true});
+}
 
-  <span class="footer__copy">© 2025 Finding Our Voice. All rights reserved.</span>
-
-</footer>
-
-
-<script>
-  /* ── Mobile drawer ── */
-  const hamburger = document.getElementById('hamburger');
-  const drawer    = document.getElementById('drawer');
-
-  hamburger.addEventListener('click', () => {
-    const open = drawer.classList.toggle('open');
-    hamburger.setAttribute('aria-expanded', open);
-  });
-
-  document.addEventListener('click', e => {
-    if (!drawer.contains(e.target) && !hamburger.contains(e.target)) {
-      drawer.classList.remove('open');
-      hamburger.setAttribute('aria-expanded', 'false');
-    }
-  });
-
-  function closeDrawer() {
-    drawer.classList.remove('open');
-    hamburger.setAttribute('aria-expanded', 'false');
+/* ── EVENTS (single delegation block) ── */
+document.addEventListener('click',function(e){
+  // Language toggle (desktop + mobile)
+  if(e.target.closest('#lang-toggle')||e.target.closest('#lang-toggle-mobile')){
+    lang=lang==='en'?'es':'en';
+    localStorage.setItem('fov-lang',lang);
+    renderSite();
+    return;
   }
+  // Hamburger
+  const ham=e.target.closest('#hamburger');
+  if(ham){
+    const drawer=document.getElementById('drawer');
+    if(drawer){const open=drawer.classList.toggle('open');ham.setAttribute('aria-expanded',open);}
+    return;
+  }
+  // Close drawer on outside click
+  const drawer=document.getElementById('drawer');
+  if(drawer&&drawer.classList.contains('open')&&!e.target.closest('#drawer')&&!e.target.closest('#hamburger')){
+    drawer.classList.remove('open');
+    const ham=document.getElementById('hamburger');
+    if(ham) ham.setAttribute('aria-expanded','false');
+  }
+  // Route navigation
+  const link=e.target.closest('[data-route]');
+  if(link){
+    e.preventDefault();
+    const drawer=document.getElementById('drawer');
+    if(drawer) drawer.classList.remove('open');
+    navigate(link.dataset.route);
+  }
+});
 
-  /* ── Navbar shadow on scroll ── */
-  window.addEventListener('scroll', () => {
-    document.getElementById('navbar').style.boxShadow =
-      window.scrollY > 20 ? '0 4px 30px rgba(0,0,0,0.45)' : '0 2px 20px rgba(0,0,0,0.35)';
-  }, { passive: true });
+document.addEventListener('submit',function(e){
+  if(e.target.id==='contact-form'){
+    e.preventDefault();
+    const form=document.getElementById('contact-form');
+    const confirm=document.getElementById('form-confirm');
+    if(form) form.style.display='none';
+    if(confirm) confirm.style.display='block';
+  }
+});
 
-  /* ── Fade-in on scroll ── */
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.style.opacity = '1';
-        e.target.style.transform = 'translateY(0)';
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.12 });
+window.addEventListener('popstate',function(){
+  route=getRoute();
+  renderSite();
+  window.scrollTo({top:0,behavior:'instant'});
+});
 
-  document.querySelectorAll(
-    '.impact__item, .q-card, .how__card, .p-badge, .timeline__item, .cta__card'
-  ).forEach((el, i) => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(28px)';
-    el.style.transition = `opacity 0.55s ease ${i * 0.08}s, transform 0.55s ease ${i * 0.08}s`;
-    observer.observe(el);
-  });
+/* ── INIT ── */
+route=getRoute();
+renderSite();
 </script>
-
 </body>
 </html>
