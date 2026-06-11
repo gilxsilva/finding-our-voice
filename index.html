@@ -251,7 +251,7 @@ en:{
   hero_btn_story:'Our Story',hero_btn_involved:'Get Involved',
   impact_students:'Students Helped',impact_grant:'Grant Received',
   impact_grant_sub:'Youth Funding Youth Ideas',impact_founders:'Student Co-founders',
-  impact_founders_sub:'Yuli · Emir · Darwing',
+  impact_founders_sub:'Gil Silva · Yuli Zhang · Emir Magdaleno · Darwing Gonzalez',
   mission_eyebrow:'Our Mission',
   mission_pre:'Finding Our Voice supports newcomer students in learning English and building community, so',
   mission_highlight:'every voice',mission_post:'gets heard.',
@@ -346,7 +346,7 @@ es:{
   hero_btn_story:'Nuestra Historia',hero_btn_involved:'Unéte',
   impact_students:'Estudiantes Ayudados',impact_grant:'Beca Recibida',
   impact_grant_sub:'Youth Funding Youth Ideas',impact_founders:'Co-fundadores Estudiantiles',
-  impact_founders_sub:'Yuli · Emir · Darwing',
+  impact_founders_sub:'Gil Silva · Yuli Zhang · Emir Magdaleno · Darwing Gonzalez',
   mission_eyebrow:'Nuestra Misión',
   mission_pre:'Encontrando Nuestra Voz apoya a estudiantes recién llegados a aprender inglés y construir comunidad, para que',
   mission_highlight:'cada voz',mission_post:'sea escuchada.',
@@ -539,7 +539,7 @@ function pageHome(){
       <span class="impact__label">${t('impact_grant')}<small>${t('impact_grant_sub')}</small></span>
     </div>
     <div class="impact__item">
-      <span class="impact__num">3</span>
+      <span class="impact__num">4</span>
       <span class="impact__label">${t('impact_founders')}<small>${t('impact_founders_sub')}</small></span>
     </div>
   </div>
@@ -574,9 +574,9 @@ function pageAbout(){
       </div>
       <div class="story__founders">
         <span class="founder-chip" data-route="gil">Gil Silva</span>
-        <span class="founder-chip" data-route="yuli">Yuli</span>
-        <span class="founder-chip" data-route="emir">Emir</span>
-        <span class="founder-chip" data-route="darwing">Darwing</span>
+        <span class="founder-chip" data-route="yuli">Yuli Zhang</span>
+        <span class="founder-chip" data-route="emir">Emir Magdaleno</span>
+        <span class="founder-chip" data-route="darwing">Darwing Gonzalez</span>
       </div>
     </div>
     <div class="timeline">
@@ -612,9 +612,9 @@ function pageAbout(){
 function pageTeam(){
   const founders=[
     {id:'gil',initials:'GS',name:'Gil Silva'},
-    {id:'yuli',initials:'Y',name:'Yuli'},
-    {id:'emir',initials:'E',name:'Emir'},
-    {id:'darwing',initials:'D',name:'Darwing'}
+    {id:'yuli',initials:'YZ',name:'Yuli Zhang'},
+    {id:'emir',initials:'EM',name:'Emir Magdaleno'},
+    {id:'darwing',initials:'DG',name:'Darwing Gonzalez'}
   ];
   const cards=founders.map(f=>`
     <div class="team-card" data-route="${f.id}">
@@ -637,8 +637,8 @@ function pageTeam(){
 }
 
 function pageFounder(id){
-  const initials={gil:'GS',yuli:'Y',emir:'E',darwing:'D'}[id]||id[0].toUpperCase();
-  const name={gil:'Gil Silva',yuli:'Yuli',emir:'Emir',darwing:'Darwing'}[id]||id;
+  const initials={gil:'GS',yuli:'YZ',emir:'EM',darwing:'DG'}[id]||id[0].toUpperCase();
+  const name={gil:'Gil Silva',yuli:'Yuli Zhang',emir:'Emir Magdaleno',darwing:'Darwing Gonzalez'}[id]||id;
   const contribs=[1,2,3,4].map(n=>`<li>${t(id+'_c'+n)}</li>`).join('');
   return `
 <div class="founder-hero">
