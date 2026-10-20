@@ -6,7 +6,8 @@
     "start": "node tests/serve.mjs",
     "test": "playwright test",
     "test:unit": "node --test tests/content.test.js",
-    "test:browser": "node tests/serve.mjs 4174"
+    "test:browser": "node tests/serve.mjs 4174",
+    "build": "node scripts/build.mjs"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.11.1",

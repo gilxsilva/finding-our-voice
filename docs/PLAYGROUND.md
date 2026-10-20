@@ -1,6 +1,6 @@
 # Finding Our Voice Playground
 
-A small, Spanish-first bilingual learning hub for newcomer teenagers. It extends the existing static site without a framework migration, backend, authentication, tracking, or production build step.
+A small, Spanish-first bilingual learning hub for newcomer teenagers. It extends the existing static site without a framework migration, backend, authentication, tracking, or production runtime dependencies.
 
 ## Evaluate locally
 
@@ -42,7 +42,7 @@ Digital safety guidance links to current official [FTC phishing guidance](https:
 - `playground/playground.css`: isolated design tokens, layouts, game controls, breakpoints and accessibility preferences.
 - `playground/fonts/`: unmodified Barlow and Barlow Condensed files from [Google Fonts](https://github.com/google/fonts/tree/main/ofl/barlow), plus the SIL Open Font License.
 
-The original nonprofit content and founder biographies remain in `index.html`. Legacy documents remain at their original paths. Their existing contact behavior and external resources were preserved. No deployment configuration, domain, or production branch was changed.
+The original nonprofit content and founder biographies remain in `index.html`. Legacy documents remain at their original paths. Their existing contact behavior and external resources were preserved. The Vercel publishing configuration copies these public files into `dist/`; no production branch is merged by publishing.
 
 ## Testing
 
@@ -70,4 +70,4 @@ No activities are placeholders. The scope is intentionally small: four or five s
 
 The Playground now follows the existing nonprofit website’s dark brown poster hero, oversized uppercase Barlow Condensed headings, FOV wordmark, Mission Gold pill buttons, parchment sections, gold-topped white cards, and outlined speech bubble/star/wave illustrations. The full nonprofit navigation and matching footer stay available from the hub and games. On phones, a keyboard-accessible disclosure menu supports Escape, outside clicks and focus return. Game feedback colors remain reserved for success and retry states.
 
-For a future Vercel release, keep the nonprofit pages and Playground in one static project and domain, with the learning hub at `/playground.html`. Start with a reviewable preview, then release the reviewed commit to production. Vercel supports static frontend hosting; see its [frontend documentation](https://vercel.com/docs/frameworks/frontend). This revision does not connect hosting, change DNS, merge the PR, or deploy.
+The nonprofit pages and Playground share one static Vercel project, with the learning hub at `/playground.html`. `npm run build` packages public assets into `dist/` and `vercel.json` selects that output. Tests and development dependencies are excluded. The release process does not merge the open feature PR or change custom DNS. See the README for hosting details and public URLs.
