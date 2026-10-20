@@ -485,3 +485,9 @@ footer a {
 footer a:hover {
     text-decoration: underline;
 }
+
+/* Keep legacy navigation usable with the new Playground entry on phones. */
+@media (max-width: 650px) {
+    nav { flex-wrap: wrap; gap: .75rem; padding: 0 1rem; }
+    nav a { font-size: 1rem; }
+}

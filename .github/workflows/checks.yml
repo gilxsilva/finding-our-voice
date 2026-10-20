@@ -1,0 +1,31 @@
+name: Website checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: website-checks-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Content, build, and browser checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run test:unit
+      - run: npm run build
+      - name: Install Chrome for browser tests
+        run: npx playwright install --with-deps chrome
+      - run: npm test

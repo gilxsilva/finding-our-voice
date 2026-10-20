@@ -1,3 +1,8 @@
 .DS_Store
 .glitchdotcom.json
 .glitch-assets
+node_modules/
+test-results/
+playwright-report/
+dist/
+.vercel/
