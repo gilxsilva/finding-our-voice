@@ -2,7 +2,7 @@
 
 ## Result
 
-The current design revision passed **19 browser-hosted checks, 0 failures**, and **4 Node content/storage checks, 0 failures**. All eight activities were completed through the actual app in the Codex in-app browser. Desktop and mobile screenshots were visually reviewed, including the masthead, poster hero, gold/white cards, mobile disclosure and game frame. The app was subsequently packaged and released to Vercel production; the feature PR remains unmerged. See the release note below.
+The release passed **20 standalone Playwright tests on GitHub Actions**, **19 browser-hosted checks**, and **4 Node content/storage checks**, with no test failures in those executed runs. All eight activities were completed through the actual app in the Codex in-app browser. Desktop and mobile screenshots were visually reviewed, including the masthead, poster hero, gold/white cards, mobile disclosure and game frame. The app was packaged and released to Vercel production; PR #1 integrates the reviewed version into `main`. See the release notes below.
 
 The previously blocked stale error page was refreshed by the user, restoring normal browser access. The browser suite then ran on a dedicated test origin at `http://127.0.0.1:4174`, separate from the user preview at port 4173. The runner is disabled on the preview origin so its resets cannot clear the learner's saved preview progress.
 
@@ -31,7 +31,7 @@ The original site's contact behavior was preserved. Testing confirms the contact
 
 Run `npm ci`, then `npm run test:unit` for the four content/storage checks. For the browser-hosted suite, run `npm run test:browser`, open `http://127.0.0.1:4174/tests/browser.html`, and click **Run all browser checks**. Only disposable practice state on this dedicated test origin is reset. The regular preview remains at `http://127.0.0.1:4173` using `npm start`.
 
-The standalone Playwright suite contains 20 tests but could not launch Google Chrome in this managed environment during the first iteration. Those tests are **not counted as passing**. The executed browser-hosted suite supplies the current end-to-end, responsive and axe evidence instead. Run `npm test` on a machine that permits launching installed Google Chrome.
+The managed local environment still cannot launch Google Chrome (the process aborts before any test runs). The same standalone suite subsequently ran successfully on GitHub’s Ubuntu runner: **20 passed**, including all eight activities, original-site regressions, language/state behavior, four layout widths, and axe audits. See [the successful workflow run](https://github.com/gilxsilva/finding-our-voice/actions/runs/39517371599) for commit `2cc70580821244da0364a9cfb4cf1f2194c148c8`. GitHub Actions repeats these checks for pull requests and pushes to `main`.
 
 The development servers and test dependencies are not required by production hosting.
 
@@ -39,7 +39,7 @@ The development servers and test dependencies are not required by production hos
 
 No formal WCAG conformance certification is claimed. Test actual iOS Safari and Android devices, 200% zoom, VoiceOver/NVDA announcement quality, and device speech voices. Classroom mode is cooperative on one shared screen. Email composition is guided. Student and educator usability feedback should drive expansion.
 
-## Vercel release — October 20, 2026
+## Initial Vercel release — October 20, 2026
 
 The `finding-our-voice` project in Gil Silva’s projects is connected to `gilxsilva/finding-our-voice`. Vercel reported the production deployment of commit `fcec1ee99eec6e5e2a08525fe27d05cd10c1c6b7` as **READY**, with no alias error, and assigned `https://finding-our-voice.vercel.app`. The build logs confirm the exact Git commit, successful static packaging, and completed deployment. A subsequent documentation-only commit adds the live links and this release record.
 
@@ -47,4 +47,14 @@ The `finding-our-voice` project in Gil Silva’s projects is connected to `gilxs
 
 Public HTTPS verification was attempted but could not complete from this environment: the browser reported an unreachable address and command-line DNS resolution failed (including for GitHub). Vercel’s authenticated fetch was rejected by automatic approval review because it could create an authentication-bypass link; no bypass was created and protection was not changed. The deployment status and alias are confirmed by Vercel, but public reachability and post-deployment browser interactions remain to be checked from a normal browser. No production completion data was reset.
 
-Production entry points: [website](https://finding-our-voice.vercel.app/) and [Playground](https://finding-our-voice.vercel.app/playground.html). Main and the existing GitHub Pages deployment were not merged or altered.
+At that initial release, main and the existing GitHub Pages deployment had not yet been merged or altered. The public verification gap was resolved by the follow-up below.
+
+## Production readiness and public verification — October 20, 2026
+
+After network access recovered, the public Vercel domain returned HTTP 200 without authentication. **All 23 public assets** (six HTML pages, CSS/JavaScript modules, fonts and license) returned 200 and matched the source bytes from the static build. `/tests/browser.html`, `/node_modules/axe-core/axe.min.js`, `/README.md`, and `/.git/config` returned 404. No authentication bypass or protection changes were used.
+
+In the public in-app browser, all eight cards rendered. ES/EN switching worked; a conversation exercised an incorrect answer, retry, keyboard continuation, all four steps, completion, and persistence after reloading the dashboard. The GitHub Actions suite supplies additional complete game, mobile-layout, keyboard and nonprofit-route coverage. Application code has not changed since that tested release.
+
+The repository website link now points to `https://finding-our-voice.vercel.app/`. README and the [production guide](PRODUCTION.md) document the exact repository/project, `main` release workflow, build output, checks, privacy boundaries, preserved routes, and rollback procedure. User authorization now includes merging PR #1 and releasing the merged commit. The final merge SHA and production deployment are recorded in GitHub and Vercel rather than embedded in a commit that would change that SHA.
+
+Production entry points: [website](https://finding-our-voice.vercel.app/) and [Playground](https://finding-our-voice.vercel.app/playground.html). Remaining device, screen-reader, speech-quality and student usability checks are follow-up work, not completed certifications.
