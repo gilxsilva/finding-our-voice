@@ -3,6 +3,14 @@
 **A student-founded program at Mission High School, San Francisco.**
 Built in partnership with 826 Valencia to support newcomer immigrant, refugee, and undocumented students in learning English and navigating the U.S. education system.
 
+## Live website
+
+- [Finding Our Voice](https://finding-our-voice.vercel.app/)
+- [Finding Our Voice Playground — all eight activities](https://finding-our-voice.vercel.app/playground.html)
+- [Review the feature in PR #1](https://github.com/gilxsilva/finding-our-voice/pull/1)
+
+Vercel production hosts the feature branch release. The pull request remains open and `main` is unmerged. The existing GitHub Pages site is unchanged.
+
 ---
 
 ## Who We Are

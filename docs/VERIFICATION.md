@@ -2,7 +2,7 @@
 
 ## Result
 
-The current design revision passed **19 browser-hosted checks, 0 failures**, and **4 Node content/storage checks, 0 failures**. All eight activities were completed through the actual app in the Codex in-app browser. Desktop and mobile screenshots were visually reviewed, including the masthead, poster hero, gold/white cards, mobile disclosure and game frame. No deployment or merge was performed.
+The current design revision passed **19 browser-hosted checks, 0 failures**, and **4 Node content/storage checks, 0 failures**. All eight activities were completed through the actual app in the Codex in-app browser. Desktop and mobile screenshots were visually reviewed, including the masthead, poster hero, gold/white cards, mobile disclosure and game frame. The app was subsequently packaged and released to Vercel production; the feature PR remains unmerged. See the release note below.
 
 The previously blocked stale error page was refreshed by the user, restoring normal browser access. The browser suite then ran on a dedicated test origin at `http://127.0.0.1:4174`, separate from the user preview at port 4173. The runner is disabled on the preview origin so its resets cannot clear the learner's saved preview progress.
 
@@ -38,3 +38,13 @@ The development servers and test dependencies are not required by production hos
 ## Remaining validation
 
 No formal WCAG conformance certification is claimed. Test actual iOS Safari and Android devices, 200% zoom, VoiceOver/NVDA announcement quality, and device speech voices. Classroom mode is cooperative on one shared screen. Email composition is guided. Student and educator usability feedback should drive expansion.
+
+## Vercel release — October 20, 2026
+
+The `finding-our-voice` project in Gil Silva’s projects is connected to `gilxsilva/finding-our-voice`. Vercel reported the production deployment of commit `fcec1ee99eec6e5e2a08525fe27d05cd10c1c6b7` as **READY**, with no alias error, and assigned `https://finding-our-voice.vercel.app`. The build logs confirm the exact Git commit, successful static packaging, and completed deployment. A subsequent documentation-only commit adds the live links and this release record.
+
+`npm run build` passed locally; public output bytes matched their source files, all six HTML documents were retained, and tests/documentation/dependencies were excluded. The four content/storage tests passed again. No application code changed in this publishing revision, so the earlier 19 browser checks still describe that application revision.
+
+Public HTTPS verification was attempted but could not complete from this environment: the browser reported an unreachable address and command-line DNS resolution failed (including for GitHub). Vercel’s authenticated fetch was rejected by automatic approval review because it could create an authentication-bypass link; no bypass was created and protection was not changed. The deployment status and alias are confirmed by Vercel, but public reachability and post-deployment browser interactions remain to be checked from a normal browser. No production completion data was reset.
+
+Production entry points: [website](https://finding-our-voice.vercel.app/) and [Playground](https://finding-our-voice.vercel.app/playground.html). Main and the existing GitHub Pages deployment were not merged or altered.
