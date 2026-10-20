@@ -3,6 +3,9 @@ import http from "node:http";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 const root = process.cwd();
+const port = Number(process.argv[2] || 4173);
+if (!Number.isInteger(port) || port < 1024 || port > 65535)
+  throw new Error("Choose a port from 1024 to 65535.");
 const mime = {
   ".html": "text/html; charset=utf-8",
   ".js": "text/javascript; charset=utf-8",
@@ -40,6 +43,6 @@ http
       res.end("Not found");
     }
   })
-  .listen(4173, "127.0.0.1", () =>
-    console.log("Local preview: http://127.0.0.1:4173"),
+  .listen(port, "127.0.0.1", () =>
+    console.log(`Local preview: http://127.0.0.1:${port}`),
   );

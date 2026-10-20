@@ -50,7 +50,7 @@ Install development dependencies with `npm ci`. The public site itself needs non
 
 - `npm run test:unit`: bilingual content integrity, corrupt/blocked storage, Lotería winning lines.
 - `npm test`: Playwright end-to-end suite using installed Google Chrome; includes keyboard activation, language/state retention, retries, completion, layout at four sizes, no external Playground requests, accessibility checks and nonprofit regressions.
-- If a managed environment prevents launching Chrome, start the local server and open `/tests/browser.html`. Its in-browser suite exercises the same learner journeys and runs axe in an iframe using the locally installed development dependency. It resets local practice progress; use a separate local browser origin for evaluation if preserving progress matters.
+- If a managed environment prevents launching Chrome, run `npm run test:browser` and open `http://127.0.0.1:4174/tests/browser.html`. Its in-browser suite exercises the same learner journeys and runs axe in an iframe using the locally installed development dependency. The runner is disabled on the normal preview origin (port 4173). It resets only practice data on the dedicated test origin (port 4174), preserving preview progress.
 - `/tests/fallback.html` is a test-only fixture that disables storage and speech synthesis before loading the real application modules. It is not linked from the public experience.
 
 Manual review should include Tab / Shift+Tab, Enter / Space, native select arrow keys, the skip link, visible focus on long/mobile screens, 200% browser zoom, iOS Safari, Android Chrome, and a screen reader such as VoiceOver or NVDA. Automated accessibility checks do not certify WCAG conformance.

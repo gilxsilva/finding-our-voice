@@ -54,7 +54,7 @@ npm run test:unit
 npm test
 ```
 
-`npm test` uses installed Google Chrome. For a browser-only alternative, open `http://127.0.0.1:4173/tests/browser.html` after `npm ci` and `npm start`. This test page resets practice progress in that local browser origin.
+`npm test` uses installed Google Chrome. For a browser-only alternative, run `npm ci` and `npm run test:browser`, then open `http://127.0.0.1:4174/tests/browser.html`. This dedicated test origin resets only its test progress and preserves preview progress on port 4173.
 
 No deployment is performed by these commands. Existing hosting can continue to serve these files as static assets.
 

@@ -72,6 +72,7 @@ async function injectAxe() {
   });
 }
 async function run() {
+  if (location.port !== "4174") return;
   document.querySelector("#run").disabled = true;
   results.innerHTML = "";
   passed = 0;
@@ -494,4 +495,10 @@ async function run() {
   status.textContent = `DONE — ${passed} passed · ${failed} failed`;
   document.querySelector("#run").disabled = false;
 }
-document.querySelector("#run").addEventListener("click", run);
+if (location.port === "4174") {
+  document.querySelector("#run").addEventListener("click", run);
+} else {
+  document.querySelector("#run").disabled = true;
+  status.textContent =
+    "Testing is disabled on the preview origin. Run npm run test:browser, then open http://127.0.0.1:4174/tests/browser.html. Preview progress on port 4173 is preserved.";
+}
