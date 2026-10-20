@@ -7,9 +7,9 @@ Built in partnership with 826 Valencia to support newcomer immigrant, refugee, a
 
 - [Finding Our Voice](https://finding-our-voice.vercel.app/)
 - [Finding Our Voice Playground — all eight activities](https://finding-our-voice.vercel.app/playground.html)
-- [Review the feature in PR #1](https://github.com/gilxsilva/finding-our-voice/pull/1)
+- [Playground release — PR #1](https://github.com/gilxsilva/finding-our-voice/pull/1)
 
-Vercel production hosts the feature branch release. The pull request remains open and `main` is unmerged. The existing GitHub Pages site is unchanged.
+The production source is `main` in [gilxsilva/finding-our-voice](https://github.com/gilxsilva/finding-our-voice). Vercel hosts the nonprofit site and Playground together; the existing GitHub Pages address continues to serve the same repository.
 
 ---
 
@@ -33,6 +33,9 @@ playground.html  Spanish-first learning dashboard and eight activities
 playground/      shared content, game modules, styles, and local fonts
 *.html           existing legacy document routes (preserved)
 style.css        styles for legacy document routes
+scripts/         dependency-free static publishing script
+vercel.json      Vercel build and output settings
+.github/         automatic content, build, and browser checks
 tests/           content checks, browser suite, and development server
 docs/            Playground guide and verification notes
 README.md        you're reading it
@@ -79,12 +82,15 @@ npm run test:unit
 npm test
 ```
 
+[GitHub Actions](https://github.com/gilxsilva/finding-our-voice/actions/workflows/checks.yml) runs the content checks, static build, and 20 browser tests on pull requests and pushes to `main`.
+
 `npm test` uses installed Google Chrome. For a browser-only alternative, run `npm ci` and `npm run test:browser`, then open `http://127.0.0.1:4174/tests/browser.html`. This dedicated test origin resets only its test progress and preserves preview progress on port 4173.
 
 ## Hosting on Vercel
 
 The `finding-our-voice` Vercel project belongs to **Gil Silva’s projects** and connects to this GitHub repository. It hosts the nonprofit website and Playground together.
 
+- Git source: `gilxsilva/finding-our-voice`; production branch: `main`.
 - Framework preset: **Other** (plain static files).
 - Build command: `npm run build`.
 - Output directory: `dist`.
@@ -93,7 +99,9 @@ The `finding-our-voice` Vercel project belongs to **Gil Silva’s projects** and
 
 Run `npm run build` to produce the public files locally. This copies the six HTML pages, shared legacy CSS/JavaScript, and the complete `playground/` directory, including licensed local fonts. Tests, documentation, dependencies, and repository metadata are excluded. Existing document URLs and hash routes are preserved.
 
-Local development, testing, and build commands do not publish anything. Release the reviewed commit through Vercel; check the home page, `/playground.html`, language switching, a full activity, and the original founder pages before sharing the release. The current feature is maintained on `codex/playground` in [PR #1](https://github.com/gilxsilva/finding-our-voice/pull/1); publishing it does not merge that PR.
+Local development, testing, and build commands do not publish anything. Open a pull request, require the checks to pass during review, and merge the reviewed changes into `main`. The connected Vercel project deploys updates from `main` to production; confirm the deployment is Ready for the merged commit before sharing it. Check the home page, `/playground.html`, language switching, a full activity, and the original founder pages.
+
+For recovery, revert the problem commit in a new PR or use the Vercel dashboard to roll back to a known working production deployment. See [the release and maintenance guide](docs/PRODUCTION.md) for the project identity and verification steps.
 
 ---
 

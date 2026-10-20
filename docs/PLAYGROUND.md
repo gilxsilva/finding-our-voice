@@ -42,7 +42,7 @@ Digital safety guidance links to current official [FTC phishing guidance](https:
 - `playground/playground.css`: isolated design tokens, layouts, game controls, breakpoints and accessibility preferences.
 - `playground/fonts/`: unmodified Barlow and Barlow Condensed files from [Google Fonts](https://github.com/google/fonts/tree/main/ofl/barlow), plus the SIL Open Font License.
 
-The original nonprofit content and founder biographies remain in `index.html`. Legacy documents remain at their original paths. Their existing contact behavior and external resources were preserved. The Vercel publishing configuration copies these public files into `dist/`; no production branch is merged by publishing.
+The original nonprofit content and founder biographies remain in `index.html`. Legacy documents remain at their original paths. Their existing contact behavior and external resources were preserved. The Vercel publishing configuration copies these public files into `dist/`; `main` is the production source after review and merge.
 
 ## Testing
 
@@ -70,4 +70,4 @@ No activities are placeholders. The scope is intentionally small: four or five s
 
 The Playground now follows the existing nonprofit website’s dark brown poster hero, oversized uppercase Barlow Condensed headings, FOV wordmark, Mission Gold pill buttons, parchment sections, gold-topped white cards, and outlined speech bubble/star/wave illustrations. The full nonprofit navigation and matching footer stay available from the hub and games. On phones, a keyboard-accessible disclosure menu supports Escape, outside clicks and focus return. Game feedback colors remain reserved for success and retry states.
 
-The nonprofit pages and Playground share one static Vercel project, with the learning hub at `/playground.html`. `npm run build` packages public assets into `dist/` and `vercel.json` selects that output. Tests and development dependencies are excluded. The release process does not merge the open feature PR or change custom DNS. See the README for hosting details and public URLs.
+The nonprofit pages and Playground share one static Vercel project, with the learning hub at `/playground.html`. `npm run build` packages public assets into `dist/` and `vercel.json` selects that output. Tests and development dependencies are excluded. Changes are reviewed in GitHub pull requests, then merged into `main` and deployed by the connected Vercel project. No custom DNS is required for the current Vercel address. See the README for hosting details and public URLs.
