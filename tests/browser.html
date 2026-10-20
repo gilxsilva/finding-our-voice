@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Playground browser checks</title>
+    <style>
+      body {
+        font: 15px/1.6 system-ui;
+        margin: 24px;
+        color: #3d2b1a;
+        background: #fffcf5;
+      }
+      button {
+        font: inherit;
+        padding: 12px 20px;
+      }
+      iframe {
+        height: 900px;
+        border: 1px solid #bba888;
+        max-width: 100%;
+      }
+      .pass {
+        color: #205c37;
+      }
+      .fail {
+        color: #9a2618;
+      }
+      pre {
+        white-space: pre-wrap;
+      }
+      #results {
+        max-width: 1100px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Playground browser checks</h1>
+    <p>
+      Development-only checks. These run in an isolated frame on this local
+      site. Running clears practice progress for this browser origin.
+    </p>
+    <button id="run">Run all browser checks</button>
+    <p id="status" role="status">Ready.</p>
+    <ol id="results"></ol>
+    <iframe title="Playground under test" id="preview" width="1440"></iframe>
+    <script type="module" src="browser.js"></script>
+  </body>
+</html>

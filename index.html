@@ -35,7 +35,7 @@ body{font-family:'Barlow',sans-serif;background:var(--parchment);color:var(--ink
 /* ── NAV ── */
 .nav{position:sticky;top:0;z-index:200;background:var(--brown-dark);height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;box-shadow:0 2px 20px rgba(0,0,0,.35);transition:box-shadow .3s}
 .nav__logo{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:2rem;color:var(--gold);text-decoration:none;letter-spacing:.06em;text-transform:uppercase;line-height:1;cursor:pointer}
-.nav__links{display:flex;gap:1.8rem;list-style:none;align-items:center}
+.nav__links{display:flex;gap:1.2rem;list-style:none;align-items:center}
 .nav__links a{font-family:'Barlow',sans-serif;font-weight:600;font-size:.88rem;letter-spacing:.04em;color:rgba(255,255,255,.75);text-decoration:none;transition:color .2s;cursor:pointer;background:none;border:none;padding:0}
 .nav__links a:hover,.nav__links a.active{color:var(--gold)}
 .nav__right{display:flex;align-items:center;gap:.8rem}
@@ -218,6 +218,10 @@ body{font-family:'Barlow',sans-serif;background:var(--parchment);color:var(--ink
 [lang="es"] .hero__headline{font-size:clamp(2rem,12vw,12rem)}
 
 /* ── RESPONSIVE ── */
+@media(min-width:821px) and (max-width:1050px){
+  .nav__links,.nav__cta{display:none}
+  .nav__hamburger{display:flex}
+}
 @media(max-width:820px){
   .nav__links,.nav__cta{display:none}
   .nav__hamburger{display:flex}
@@ -461,7 +465,7 @@ function buildNav(){
   return `
 <nav class="nav" id="navbar">
   <a href="#home" data-route="home" class="nav__logo">FOV</a>
-  <ul class="nav__links">${navLinks}</ul>
+  <ul class="nav__links">${navLinks}<li><a href="playground.html" style="color:var(--gold)">Playground ↗</a></li></ul>
   <div class="nav__right">
     <button class="lang-toggle" id="lang-toggle" aria-label="Switch language">${t('lang_toggle')}</button>
     <a href="#get-involved" data-route="get-involved" class="btn-pill nav__cta">${t('nav_involved')}</a>
@@ -471,6 +475,7 @@ function buildNav(){
   </button>
   <div class="nav__drawer" id="drawer">
     ${drawerLinks}
+    <a href="playground.html">Playground ↗</a>
     <a href="#get-involved" data-route="get-involved">${t('nav_involved')}</a>
     <button class="lang-toggle" id="lang-toggle-mobile">${t('lang_toggle')}</button>
   </div>
@@ -492,6 +497,7 @@ function buildFooter(){
     <a href="#team" data-route="team">${t('nav_team')}</a>
     <a href="#resources" data-route="resources">${t('nav_resources')}</a>
     <a href="#get-involved" data-route="get-involved">${t('nav_involved')}</a>
+    <a href="playground.html">Playground ↗</a>
     <a href="mailto:info@findingourvoice.org">Email</a>
     <a href="https://www.linkedin.com/company/finding-our-voice-sf/about/" target="_blank" rel="noopener">LinkedIn</a>
   </nav>
@@ -522,6 +528,7 @@ function pageHome(){
     </div>
     <p class="hero__sub">${t('hero_sub')}</p>
     <div class="hero__btns">
+      <a href="playground.html" class="btn-pill">${lang==='es'?'Explora el Playground':'Explore the Playground'} ↗</a>
       <a href="#about" data-route="about" class="btn-outline">${t('hero_btn_story')}</a>
       <a href="#get-involved" data-route="get-involved" class="btn-pill">${t('hero_btn_involved')}</a>
     </div>

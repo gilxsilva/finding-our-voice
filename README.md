@@ -17,30 +17,46 @@ Co-founded by **Gil Silva, Yuli, Emir, and Darwing** at Mission High School in S
 
 ## What's in This Repo
 
-This is the source code for the Finding Our Voice website. It's a single-page site built without any frameworks or build tools: just HTML, CSS, and a little JavaScript.
+This is the source code for the Finding Our Voice website. The nonprofit site and Playground use HTML, CSS, and JavaScript without a framework or production build step.
 
 ```
-index.html       the whole site, all in one file
-style.css        legacy styles (kept for reference)
-script.js        legacy JS (kept for reference)
+index.html       existing bilingual nonprofit site and founder routes
+playground.html  Spanish-first learning dashboard and eight activities
+playground/      shared content, game modules, styles, and local fonts
+*.html           existing legacy document routes (preserved)
+style.css        styles for legacy document routes
+tests/           content checks, browser suite, and development server
+docs/            Playground guide and verification notes
 README.md        you're reading it
 ```
 
-All fonts come from Google Fonts (Barlow Condensed + Barlow). All illustrations are inline SVG. No external images, no build step.
+The nonprofit site uses Google Fonts (Barlow Condensed + Barlow). The Playground bundles those fonts locally under the SIL Open Font License and uses inline SVG illustrations, so its activities need no external services. There is no production build step.
 
 ---
 
 ## Running It Locally
 
-1. Clone the repo:
+1. Clone the repository and start a local static server:
    ```bash
-   git clone https://github.com/your-repo/finding-our-voice.git
+   git clone https://github.com/gilxsilva/finding-our-voice.git
    cd finding-our-voice
+   npm start
    ```
+2. Open `http://127.0.0.1:4173/` for the nonprofit site or `http://127.0.0.1:4173/playground.html` for the learning hub.
 
-2. Open `index.html` in your browser. That's it.
+Node 20+ is needed only for the included development server and test tools. You can also use any ordinary static HTTP server. Serve the files over HTTP; the Playground uses JavaScript modules and cannot be launched reliably by double-clicking its HTML file.
 
-To deploy, drag the folder into [Netlify Drop](https://app.netlify.com/drop) or push to any static host.
+For test instructions, activity details, and first-version limitations, see [the Playground guide](docs/PLAYGROUND.md). To run checks:
+
+```bash
+npm ci
+npm run test:unit
+npm test
+```
+
+`npm test` uses installed Google Chrome. For a browser-only alternative, open `http://127.0.0.1:4173/tests/browser.html` after `npm ci` and `npm start`. This test page resets practice progress in that local browser origin.
+
+No deployment is performed by these commands. Existing hosting can continue to serve these files as static assets.
 
 ---
 

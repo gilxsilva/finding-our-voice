@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Playground restricted-browser fixture</title>
+    <link rel="stylesheet" href="../playground/playground.css" />
+    <script>
+      // Test-only fixture: exercise the app with unavailable browser capabilities.
+      Object.defineProperty(window, "localStorage", {
+        get() {
+          throw Error("Storage blocked for test");
+        },
+      });
+      Object.defineProperty(window, "speechSynthesis", { value: undefined });
+      Object.defineProperty(window, "SpeechSynthesisUtterance", {
+        value: undefined,
+      });
+    </script>
+    <script type="module" src="../playground/app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Saltar al contenido / Skip to content</a>
+    <header id="header"></header>
+    <main id="main" tabindex="-1"></main>
+    <footer id="footer"></footer>
+    <div
+      id="announcer"
+      class="sr-only"
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
+    ></div>
+  </body>
+</html>

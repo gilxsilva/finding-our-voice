@@ -1,0 +1,14 @@
+{
+  "name": "finding-our-voice",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node tests/serve.mjs",
+    "test": "playwright test",
+    "test:unit": "node --test tests/content.test.js"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.11.1",
+    "@playwright/test": "1.64.1"
+  }
+}
