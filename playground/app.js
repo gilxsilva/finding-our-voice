@@ -1,5 +1,6 @@
 import { games, bi } from "./content.js";
 import { icon } from "./ui.js";
+import { siteLinks, wave, bubble, star } from "./brand.js";
 import {
   readProgress,
   saveProgress,
@@ -23,6 +24,7 @@ try {
 } catch {
   storageAvailable = false;
 }
+let menuOpen = false;
 let filter = "all",
   resetPending = false,
   route = "",
@@ -128,10 +130,33 @@ function controller(id) {
   return sessions.get(id);
 }
 function header() {
-  return `<div class="header-inner"><a class="brand" href="index.html" aria-label="Finding Our Voice"><span class="brand-mark">FOV<span aria-hidden="true">✳</span></span><span class="brand-name">FINDING<br>OUR VOICE</span></a><nav aria-label="${tr(bi("Navegación principal", "Main navigation"))}"><a class="site-link" href="index.html#about">${tr(bi("Nuestra historia", "Our story"))}</a><a class="playground-link" href="#">Playground</a></nav><div class="header-tools"><button id="audio-toggle" class="tool-button" aria-pressed="${audio}" title="${tr(bi("Audio automático al jugar", "Automatic audio while playing"))}">${icon("sound")}<span>${tr(audio ? bi("Audio sí", "Audio on") : bi("Audio no", "Audio off"))}</span></button><button id="language" class="language-button" aria-label="${lang === "es" ? "Switch interface to English" : "Cambiar la interfaz a español"}"><span class="${lang === "es" ? "active" : ""}" lang="es">ES</span><span aria-hidden="true">/</span><span class="${lang === "en" ? "active" : ""}" lang="en">EN</span></button></div></div>`;
+  return `<div class="header-inner">
+    <a class="brand" href="index.html" aria-label="Finding Our Voice"><span class="brand-mark">FOV</span></a>
+    <nav id="site-menu" class="site-links ${menuOpen ? "is-open" : ""}" aria-label="${tr(bi("Navegación principal", "Main navigation"))}">
+      ${siteLinks.map((link) => `<a href="index.html#${link.route}">${tr(link.label)}</a>`).join("")}
+      <a class="playground-link" href="#" aria-current="page">Playground</a>
+      <a class="mobile-involved" href="index.html#get-involved">${tr(bi("Únete", "Get Involved"))}</a>
+    </nav>
+    <div class="header-tools">
+      <button id="audio-toggle" class="tool-button" aria-pressed="${audio}" aria-label="${tr(audio ? bi("Audio automático activado", "Automatic audio on") : bi("Audio automático desactivado", "Automatic audio off"))}">${icon("sound")}<span>${tr(audio ? bi("Audio sí", "Audio on") : bi("Audio no", "Audio off"))}</span></button>
+      <button id="language" class="language-button" aria-label="${lang === "es" ? "Switch interface to English" : "Cambiar la interfaz a español"}"><span class="${lang === "es" ? "active" : ""}" lang="es">ES</span><span aria-hidden="true">/</span><span class="${lang === "en" ? "active" : ""}" lang="en">EN</span></button>
+      <a class="header-cta" href="index.html#get-involved">${tr(bi("Únete", "Get Involved"))}</a>
+    </div>
+    <button id="menu-toggle" class="menu-toggle" aria-label="${tr(bi("Menú del sitio", "Site menu"))}" aria-expanded="${menuOpen}" aria-controls="site-menu"><span></span><span></span><span></span></button>
+  </div>`;
 }
 function footer() {
-  return `<div class="footer-inner"><p><strong>Finding Our Voice</strong><br>${tr(bi("Hecho para encontrar tu voz. Y usarla.", "Made to help you find your voice. And use it."))}</p><a href="index.html#team">${tr(bi("Un proyecto con raíces en Mission High School, San Francisco", "Rooted in Mission High School, San Francisco"))} ↗</a><p class="privacy-note">${tr(bi("Sin cuentas. Sin anuncios. Sin datos personales.", "No accounts. No ads. No personal data."))}</p></div>`;
+  return `<div class="footer-inner"><div><a class="footer-brand" href="index.html">${tr(bi("Encontrando Nuestra Voz", "Finding Our Voice"))}</a><p>${tr(bi("Fundado en Mission High School · San Francisco, CA", "Founded at Mission High School · San Francisco, CA"))}</p></div>
+    <nav class="footer-links" aria-label="${tr(bi("Pie de página", "Footer"))}">${siteLinks.map((link) => `<a href="index.html#${link.route}">${tr(link.label)}</a>`).join("")}<a href="#">Playground</a><a href="index.html#get-involved">${tr(bi("Únete", "Get Involved"))}</a></nav>
+    <p class="privacy-note">${tr(bi("Playground · Sin cuentas. Sin anuncios. Sin datos personales.", "Playground · No accounts. No ads. No personal data."))}</p>
+  </div>`;
+}
+function setMenu(open) {
+  menuOpen = open;
+  document.getElementById("site-menu")?.classList.toggle("is-open", open);
+  document
+    .getElementById("menu-toggle")
+    ?.setAttribute("aria-expanded", String(open));
 }
 const groups = {
   all: bi("Todas las actividades", "All activities"),
@@ -140,14 +165,14 @@ const groups = {
   digital: bi("Mi mundo digital", "My digital world"),
 };
 function heroArt() {
-  return `<svg class="hero-art" viewBox="0 0 460 300" fill="none" aria-hidden="true"><path d="M25 254c54-37 118-32 178-10s135 43 224-16" stroke="#3D2B1A" stroke-width="2" stroke-dasharray="5 8"/><g transform="rotate(-9 150 160)"><rect x="50" y="58" width="190" height="200" rx="12" fill="#fffaf0" stroke="#3D2B1A" stroke-width="3"/><path d="M75 62v193" stroke="#c07d52" stroke-width="2"/><path d="M62 90h22m-22 30h22m-22 30h22m-22 30h22m-22 30h22" stroke="#3D2B1A" stroke-width="3" stroke-linecap="round"/><path d="M106 111h94m-94 21h64m-64 55h94m-94 21h80" stroke="#dccba8" stroke-width="3"/><text x="105" y="92" font-size="18" font-weight="700" fill="#3D2B1A">MY NEXT CHAPTER</text><path d="m126 152 12 12 26-27" stroke="#4e6b4c" stroke-width="5" stroke-linecap="round"/></g><g transform="rotate(7 317 100)"><path d="M231 25h183v108h-89l-33 31v-31h-61V25Z" fill="#3D2B1A"/><text x="253" y="72" font-size="24" font-weight="700" fill="#F5C132">Your voice</text><text x="253" y="103" font-size="24" font-weight="700" fill="#fffaf0">belongs here.</text></g><g transform="rotate(13 323 221)"><rect x="253" y="180" width="134" height="79" rx="8" fill="#b9d7c4" stroke="#3D2B1A" stroke-width="3"/><path d="m254 182 66 44 65-44m-131 75 47-45m84 45-47-45" stroke="#3D2B1A" stroke-width="2"/></g><path d="m39 15 4 13 14 1-11 9 3 14-11-8-12 8 4-14-11-9 14-1 6-13Zm381 141 3 10 11 1-9 7 3 11-9-6-9 6 3-11-9-7 11-1 5-10Z" fill="#fffaf0" stroke="#3D2B1A" stroke-width="2"/><path d="m200 21 4 15m-12-6 18-3" stroke="#3D2B1A" stroke-width="3" stroke-linecap="round"/></svg>`;
+  return `<svg class="hero-arcs" viewBox="0 0 1400 650" preserveAspectRatio="xMidYMid slice" fill="none" aria-hidden="true"><path d="M0 150 Q350 -20 700 150 T1400 150M0 350 Q350 180 700 350 T1400 350M0 550 Q350 380 700 550 T1400 550" stroke="#F5C132" stroke-width="2"/></svg>`;
 }
 function dashboard() {
   const count = completed.length;
-  return `<section class="dashboard-hero"><div class="hero-inner"><div class="hero-copy"><p class="eyebrow">FINDING OUR VOICE PLAYGROUND</p><h1 id="page-heading" tabindex="-1">${tr(bi("Tu idioma es tu raíz.", "Your language is your root."))}<br><span>${tr(bi("Tu voz, el siguiente paso.", "Your voice is your next step."))}</span></h1><p>${tr(bi("Un espacio para practicar inglés, probar cosas nuevas y sentirte más en casa. A tu ritmo. A tu manera.", "A space to practice English, try something new, and feel more at home. Your pace. Your way."))}</p><a class="button primary" href="#match">${tr(count ? bi("Seguir practicando", "Keep practicing") : bi("Vamos a jugar", "Let’s play"))} ${icon("arrow")}</a><span class="hero-note">${tr(bi("8 actividades · Cero presión", "8 activities · Zero pressure"))}</span></div>${heroArt()}</div></section>
+  return `<section class="dashboard-hero">${heroArt()}<div class="hero-inner"><div class="hero-copy"><p class="eyebrow">FINDING OUR VOICE PLAYGROUND</p><div class="hero-headline-wrap"><div class="hero-bubble">${bubble}</div><div class="hero-star">${star}</div><h1 id="page-heading" tabindex="-1"><span>${tr(bi("TU VOZ.", "YOUR VOICE."))}</span><span>${tr(bi("EN ACCIÓN.", "IN ACTION."))}</span></h1></div><p>${tr(bi("Un espacio para practicar inglés, probar cosas nuevas y sentirte más en casa. A tu ritmo. A tu manera.", "A space to practice English, try something new, and feel more at home. Your pace. Your way."))}</p><div class="hero-actions"><a class="button primary" href="#match">${tr(count ? bi("Seguir practicando", "Keep practicing") : bi("Vamos a jugar", "Let’s play"))} ${icon("arrow")}</a><a class="button hero-story" href="index.html#about">${tr(bi("Nuestra historia", "Our story"))}</a></div><p class="hero-note">${tr(bi("8 actividades · Cero presión · Tu español es una fortaleza", "8 activities · Zero pressure · Your Spanish is a strength"))}</p></div></div></section>
   <div class="dashboard-body"><section class="journey" aria-labelledby="journey-heading"><div class="journey-icon">${icon("star")}</div><div class="journey-text"><h2 id="journey-heading">${tr(count === 8 ? bi("¡Mira todo lo que lograste!", "Look at everything you did!") : bi("Cada intento cuenta.", "Every try counts."))}</h2><p>${tr(bi("Tu progreso se guarda solo en este navegador. Puedes repetir todo.", "Your progress is saved only in this browser. You can replay everything."))}</p></div><div class="journey-progress"><span>${count} / 8 <span>${tr(bi("completadas", "completed"))}</span></span><progress max="8" value="${count}" aria-label="${tr(bi("Actividades completadas", "Completed activities"))}"></progress></div></section>
   ${!storageAvailable ? `<p class="notice">${tr(bi("El guardado no está disponible en este navegador. Tu progreso dura esta sesión.", "Saving is unavailable in this browser. Progress lasts for this session."))}</p>` : ""}
-  <section aria-labelledby="activities-heading"><div class="section-heading"><div><p class="eyebrow">${tr(bi("UN POCO DE PRÁCTICA. MUCHAS POSIBILIDADES.", "A LITTLE PRACTICE. A LOT OF POSSIBILITY."))}</p><h2 id="activities-heading">${tr(bi("¿Qué quieres explorar hoy?", "What will you explore today?"))}</h2></div><span class="activity-count">${tr(bi("Pequeños retos para tu mundo real", "Small challenges for your real world"))}</span></div>
+  <section aria-labelledby="activities-heading"><div class="section-heading"><div><p class="eyebrow">${tr(bi("UN POCO DE PRÁCTICA. MUCHAS POSIBILIDADES.", "A LITTLE PRACTICE. A LOT OF POSSIBILITY."))}</p><h2 id="activities-heading">${tr(bi("¿Qué quieres explorar hoy?", "What will you explore today?"))}</h2><span class="heading-wave">${wave}</span></div><span class="activity-count">${tr(bi("Pequeños retos para tu mundo real", "Small challenges for your real world"))}</span></div>
   <div class="filters" role="group" aria-label="${tr(bi("Filtrar actividades", "Filter activities"))}">${Object.entries(
     groups,
   )
@@ -195,6 +220,7 @@ function readRoute() {
   return games.some((g) => g.id === id) ? id : "";
 }
 function navigate() {
+  menuOpen = false;
   stopAudio();
   route = readRoute();
   done = Boolean(sessions.get(route)?.done);
@@ -203,6 +229,11 @@ function navigate() {
   focus("page-heading");
 }
 document.addEventListener("click", (event) => {
+  if (
+    menuOpen &&
+    (!event.target.closest("#header") || event.target.closest(".site-links a"))
+  )
+    setMenu(false);
   if (event.target.closest(".skip-link")) {
     event.preventDefault();
     main.focus();
@@ -211,6 +242,10 @@ document.addEventListener("click", (event) => {
   const button = event.target.closest("button");
   if (!button) return;
   const id = button.id;
+  if (id === "menu-toggle") {
+    setMenu(!menuOpen);
+    return;
+  }
   if (id === "language") {
     lang = lang === "es" ? "en" : "es";
     saveLanguage(lang);
@@ -283,3 +318,10 @@ document.addEventListener("submit", (event) => {
 window.addEventListener("hashchange", navigate);
 window.addEventListener("pagehide", stopAudio);
 navigate();
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && menuOpen) {
+    setMenu(false);
+    focus("menu-toggle");
+  }
+});

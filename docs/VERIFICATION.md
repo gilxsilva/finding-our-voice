@@ -1,5 +1,13 @@
 # Playground verification — October 20, 2026
 
+## Design alignment revision
+
+The current revision aligns the Playground masthead, full navigation, hero, headings, illustrations, buttons, cards and footer with the original nonprofit site. An explicit language choice is shared through the site's existing `fov-lang` preference. The content/storage suite now has **4 passing checks** and JavaScript/CSS syntax checks pass.
+
+Browser verification of this revision is pending: the browser safety gate refused inspection of a stale connection-error tab because it had an internal browser URL. The local server is serving HTTP 200 again; the user has been asked to refresh the ordinary preview before browser work resumes. No attempt was made to bypass that gate. The expanded browser-hosted suite includes a nineteenth check for the shared navigation, mobile disclosure, Escape/focus return and language continuity.
+
+The results below record the first playable version, before this design revision. They must not be read as a new browser test pass for the revised design.
+
 ## Result
 
 All eight activities were completed through the actual app in the Codex in-app browser. The browser-hosted suite finished **18 passed, 0 failed**. The Node content/storage suite finished **3 passed, 0 failed**. No deployment was performed.

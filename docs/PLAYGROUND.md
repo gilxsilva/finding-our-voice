@@ -6,7 +6,7 @@ A small, Spanish-first bilingual learning hub for newcomer teenagers. It extends
 
 Run `npm start` and open `http://127.0.0.1:4173/playground.html` in a modern browser. Try a phone-sized window, then a tablet and desktop. The nonprofit home page has Playground links in its hero, desktop navigation, mobile menu, and footer. Legacy HTML pages also link to the hub.
 
-Use ES / EN at any point. The interface changes language while your current choices and activity remain. The four scenario activities offer optional Spanish translations of English prompts and answers. Matching and Lotería use both languages as part of their core interaction; sentence building starts with a Spanish target; email uses guided English composition.
+Use ES / EN at any point. The interface changes language while your current choices and activity remain. An explicitly selected language also carries between the nonprofit site and Playground. The four scenario activities offer optional Spanish translations of English prompts and answers. Matching and Lotería use both languages as part of their core interaction; sentence building starts with a Spanish target; email uses guided English composition.
 
 | Activity | First-version scope | Completion |
 | --- | --- | --- |
@@ -25,7 +25,7 @@ All activities are untimed, have retries and explanations, and end with a comple
 
 The Playground has no form requesting a real name, email address, password, or other personal details. Email and account choices use fictional `.example` addresses. The email exercise never sends mail; the account exercise never creates an account. There are no analytics, third-party requests, or production runtime dependencies in the Playground.
 
-Only completed game IDs (`fov-playground-v1`) and the interface language (`fov-playground-lang`) are stored in localStorage. Attempts remain in memory while navigating within the page. Reloading starts the current attempt over. Reset progress clears completion marks and in-memory attempts after an inline confirmation. Storage failures fall back to session memory and explain that saving is unavailable.
+Only completed game IDs (`fov-playground-v1`) and the interface language (`fov-playground-lang`, mirrored to the existing site preference `fov-lang`) are stored in localStorage. Attempts remain in memory while navigating within the page. Reloading starts the current attempt over. Reset progress clears completion marks and in-memory attempts after an inline confirmation. Storage failures fall back to session memory and explain that saving is unavailable.
 
 The files run on any static HTTP host. They do not require third-party services. This version does not include a service worker or guarantee offline reopening of a page that has not been cached by the browser. Optional speech synthesis depends on the device/browser and its installed voices; its availability and voice quality vary, and some browser voices may use network services. Audio is off by default. Every spoken prompt is also visible as text. Activities remain playable without speech synthesis.
 
@@ -34,6 +34,7 @@ Digital safety guidance links to current official [FTC phishing guidance](https:
 ## Development map
 
 - `playground/app.js`: dashboard, routing, language, optional speech, progress, focus and announcements.
+- `playground/brand.js`: the original site navigation destinations and gold line illustrations, reused across the Playground header, hero, and footer.
 - `playground/content.js`: shared vocabulary, bilingual scenarios, sentence targets and email choices.
 - `playground/games/`: focused controllers for matching, Lotería, sentence building, email, and shared scenario interactions.
 - `playground/ui.js`: shared icons, escaped text, feedback, bilingual choices and schedule.
@@ -64,3 +65,9 @@ Manual review should include Tab / Shift+Tab, Enter / Space, native select arrow
 6. Reconcile inconsistent dates and impact figures in the older legacy pages with the founders before changing historical content. This feature preserves those records.
 
 No activities are placeholders. The scope is intentionally small: four or five scenarios per decision activity, a guided email, and an account-safety simulation rather than an actual signup form.
+
+## Design alignment revision
+
+The Playground now follows the existing nonprofit website’s dark brown poster hero, oversized uppercase Barlow Condensed headings, FOV wordmark, Mission Gold pill buttons, parchment sections, gold-topped white cards, and outlined speech bubble/star/wave illustrations. The full nonprofit navigation and matching footer stay available from the hub and games. On phones, a keyboard-accessible disclosure menu supports Escape, outside clicks and focus return. Game feedback colors remain reserved for success and retry states.
+
+For a future Vercel release, keep the nonprofit pages and Playground in one static project and domain, with the learning hub at `/playground.html`. Start with a reviewable preview, then release the reviewed commit to production. Vercel supports static frontend hosting; see its [frontend documentation](https://vercel.com/docs/frameworks/frontend). This revision does not connect hosting, change DNS, merge the PR, or deploy.

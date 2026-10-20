@@ -24,7 +24,10 @@ export function saveProgress(ids, storage) {
 }
 export function readLanguage() {
   try {
-    return localStorage.getItem("fov-playground-lang") === "en" ? "en" : "es";
+    const language =
+      localStorage.getItem("fov-lang") ||
+      localStorage.getItem("fov-playground-lang");
+    return language === "en" ? "en" : "es";
   } catch {
     return "es";
   }
@@ -32,6 +35,7 @@ export function readLanguage() {
 export function saveLanguage(lang) {
   try {
     localStorage.setItem("fov-playground-lang", lang);
+    localStorage.setItem("fov-lang", lang);
   } catch {
     /* Session still works. */
   }

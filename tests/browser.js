@@ -78,6 +78,7 @@ async function run() {
   failed = 0;
   localStorage.removeItem("fov-playground-v1");
   localStorage.removeItem("fov-playground-lang");
+  localStorage.removeItem("fov-lang");
   await check(
     "Spanish-first dashboard, all filters, reset cancel and confirm",
     async () => {
@@ -103,6 +104,62 @@ async function run() {
       await click("#cancel-reset");
       await click("#reset-progress");
       await click("#confirm-reset");
+    },
+  );
+  await check(
+    "Shared site navigation, mobile menu, Escape and language continuity",
+    async () => {
+      frame.style.width = "375px";
+      frame.style.maxWidth = "none";
+      await open();
+      assert(
+        doc.querySelectorAll(".site-links a").length === 7,
+        "Full original navigation plus Playground",
+      );
+      assert(
+        win.getComputedStyle($("#site-menu")).display === "none",
+        "Mobile links start collapsed",
+      );
+      await click("#menu-toggle");
+      assert(
+        $("#menu-toggle").getAttribute("aria-expanded") === "true",
+        "Menu expanded",
+      );
+      assert(
+        win.getComputedStyle($("#site-menu")).display === "flex",
+        "Menu visible",
+      );
+      doc.dispatchEvent(
+        new win.KeyboardEvent("keydown", { key: "Escape", bubbles: true }),
+      );
+      assert(
+        $("#menu-toggle").getAttribute("aria-expanded") === "false",
+        "Escape closes menu",
+      );
+      assert(
+        doc.activeElement.id === "menu-toggle",
+        "Focus returns to menu control",
+      );
+      await click("#language");
+      assert(localStorage.getItem("fov-lang") === "en", "Site language saved");
+      await new Promise((resolve) => {
+        frame.onload = resolve;
+        frame.src = "/index.html#about";
+      });
+      doc = frame.contentDocument;
+      win = frame.contentWindow;
+      await wait();
+      assert(
+        doc.documentElement.lang === "en",
+        "Original site uses the same language",
+      );
+      await click("#lang-toggle");
+      await open();
+      assert(
+        doc.documentElement.lang === "es",
+        "Playground respects Spanish selected on original site",
+      );
+      frame.style.width = "1440px";
     },
   );
   await check(

@@ -11,7 +11,12 @@ import {
   sentences,
   emailFields,
 } from "../playground/content.js";
-import { readProgress, saveProgress } from "../playground/storage.js";
+import {
+  readProgress,
+  saveProgress,
+  readLanguage,
+  saveLanguage,
+} from "../playground/storage.js";
 import { hasLine } from "../playground/games/loteria.js";
 test("all eight activities and three vocabulary collections have unique, bilingual content", () => {
   assert.equal(games.length, 8);
@@ -83,4 +88,27 @@ test("lotería recognizes rows, columns, diagonals and does not accept incomplet
   ])
     assert.ok(hasLine(new Set(line)));
   assert.equal(hasLine(new Set([0, 1, 3, 5])), false);
+});
+
+test("an explicitly chosen language follows the learner across the nonprofit site and Playground", () => {
+  const original = Object.getOwnPropertyDescriptor(globalThis, "localStorage");
+  const values = new Map();
+  Object.defineProperty(globalThis, "localStorage", {
+    configurable: true,
+    value: {
+      getItem: (key) => values.get(key) ?? null,
+      setItem: (key, value) => values.set(key, value),
+    },
+  });
+  try {
+    assert.equal(readLanguage(), "es");
+    saveLanguage("en");
+    assert.equal(values.get("fov-lang"), "en");
+    assert.equal(readLanguage(), "en");
+    values.set("fov-lang", "es");
+    assert.equal(readLanguage(), "es");
+  } finally {
+    if (original) Object.defineProperty(globalThis, "localStorage", original);
+    else delete globalThis.localStorage;
+  }
 });
