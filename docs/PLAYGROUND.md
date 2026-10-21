@@ -4,7 +4,7 @@ A small, Spanish-first bilingual learning hub for newcomer teenagers. It extends
 
 ## Evaluate locally
 
-Run `npm start` and open `http://127.0.0.1:4173/playground.html` in a modern browser. Try a phone-sized window, then a tablet and desktop. The nonprofit home page has Playground links in its hero, desktop navigation, mobile menu, and footer. Legacy HTML pages also link to the hub.
+Run `npm start` and open `http://127.0.0.1:4173/playground.html` in a modern browser. Try a phone-sized window, then a tablet and desktop. The nonprofit home page has Playground links in its hero, desktop navigation, mobile menu, and footer. The Resources page features a bilingual Playground introduction above its four existing external resource cards. Legacy HTML pages also link to the hub.
 
 Use ES / EN at any point. The interface changes language while your current choices and activity remain. An explicitly selected language also carries between the nonprofit site and Playground. The four scenario activities offer optional Spanish translations of English prompts and answers. Matching and Lotería use both languages as part of their core interaction; sentence building starts with a Spanish target; email uses guided English composition.
 

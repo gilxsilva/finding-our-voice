@@ -180,6 +180,26 @@ body{font-family:'Barlow',sans-serif;background:var(--parchment);color:var(--ink
 .resource-card__link{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;text-transform:uppercase;letter-spacing:.08em;color:var(--brown-dark);text-decoration:none;border-bottom:2px solid var(--gold);padding-bottom:1px;transition:color .2s}
 .resource-card__link:hover{color:var(--brown-mid)}
 
+/* Featured learning hub; the existing resource cards stay below it. */
+.resource-playground{display:grid;grid-template-columns:minmax(0,1fr) 150px;align-items:center;gap:2rem;position:relative;overflow:hidden;background:var(--brown-dark);border-top:5px solid var(--gold);border-radius:18px;padding:clamp(1.5rem,4vw,3rem);box-shadow:0 8px 28px rgba(61,43,26,.12)}
+.resource-playground::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(245,193,50,.12) 1px,transparent 1px);background-size:28px 28px;pointer-events:none}
+.resource-playground__copy,.resource-playground__art{position:relative}
+.resource-playground .eyebrow{color:var(--gold)}
+.resource-playground__title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2.1rem,4.5vw,3.8rem);line-height:.95;text-transform:uppercase;color:var(--white);margin-bottom:1.1rem}
+.resource-playground__title span{display:block;color:var(--gold)}
+.resource-playground__body{max-width:650px;color:var(--parchment);font-size:1rem;line-height:1.65}
+.resource-playground__details{display:flex;flex-wrap:wrap;gap:.6rem;list-style:none;margin:1.25rem 0 1.6rem;color:var(--parchment);font-size:.85rem}
+.resource-playground__details li{border:1px solid rgba(245,193,50,.45);border-radius:999px;padding:.3rem .75rem}
+.resource-playground .btn-pill{max-width:100%;white-space:normal;line-height:1.4}
+.resource-playground .btn-pill:focus-visible{outline:3px solid var(--white);outline-offset:5px}
+.resource-playground__art{padding-bottom:50px;transform:rotate(-6deg)}
+.resource-playground__art svg{display:block;width:100%}
+.resource-playground__art .resource-playground__star{position:absolute;bottom:0;left:0;width:55px}
+@media(max-width:650px){
+  .resource-playground{grid-template-columns:minmax(0,1fr)}
+  .resource-playground__art{display:none}
+}
+
 /* ── GET INVOLVED / CTA ── */
 .cta{background:var(--brown-dark);border-top:5px solid var(--gold);padding:7rem 2rem 5rem;text-align:center;position:relative;overflow:hidden}
 .cta::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(245,193,50,.08) 1px,transparent 1px);background-size:40px 40px;pointer-events:none}
@@ -288,6 +308,9 @@ en:{
   how3_title:'Pursue College',how3_body:'Real guidance on applications, financial aid, and what higher education looks like, even if no one in your family has been before.',
   res_eyebrow:'For Students and Families',res_headline:'RESOURCES',
   res_intro:'Tools, guides, and links to help newcomer students and their families navigate school, language learning, and more.',
+  res_play_eyebrow:'Learn by doing',
+  res_play_body:'Eight activities for real life: practice English for school, build a practice email, and learn to spot scams. Switch between Spanish and English and try again whenever you need.',
+  res_play_count:'8 activities',res_play_pace:'At your own pace',res_play_privacy:'No account needed',res_play_open:'Open Playground',
   res1_title:'English Learning',res1_body:'Free online tools to practice reading, writing, and speaking at your own pace.',res1_link:'Duolingo',
   res2_title:'College Access',res2_body:'Guides on applying to college as an undocumented or first-generation student.',res2_link:'TheDream.US',
   res3_title:'Know Your Rights',res3_body:'Legal resources and information for immigrant students and families in San Francisco.',res3_link:'ILRC',
@@ -383,6 +406,9 @@ es:{
   how3_title:'Busca la Universidad',how3_body:'Orientación real sobre solicitudes, ayuda financiera y cómo es la educación superior, incluso si nadie en tu familia ha asistido antes.',
   res_eyebrow:'Para Estudiantes y Familias',res_headline:'RECURSOS',
   res_intro:'Herramientas, guías y enlaces para ayudar a los estudiantes recién llegados y sus familias a navegar la escuela, el aprendizaje del idioma y más.',
+  res_play_eyebrow:'Aprende haciendo',
+  res_play_body:'Ocho actividades para tu vida diaria: practica inglés para la escuela, prepara un correo de práctica y aprende a reconocer estafas. Cambia entre español e inglés y vuelve a intentarlo cuando lo necesites.',
+  res_play_count:'8 actividades',res_play_pace:'A tu ritmo',res_play_privacy:'Sin crear una cuenta',res_play_open:'Abrir Playground',
   res1_title:'Aprendizaje de Inglés',res1_body:'Herramientas en línea gratuitas para practicar lectura, escritura y expresión oral a tu propio ritmo.',res1_link:'Duolingo',
   res2_title:'Acceso a la Universidad',res2_body:'Guías sobre cómo solicitar ingreso a la universidad como estudiante indocumentado o de primera generación.',res2_link:'TheDream.US',
   res3_title:'Conoce Tus Derechos',res3_body:'Recursos legales e información para estudiantes inmigrantes y familias en San Francisco.',res3_link:'ILRC',
@@ -732,6 +758,16 @@ function pageResources(){
       <svg style="display:block;margin:.6rem 0 0;width:200px" viewBox="0 0 220 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M3 12 Q22 2 44 12 Q66 22 88 9 Q110 0 132 12 Q154 22 176 9 Q198 0 217 12" stroke="#F5C132" stroke-width="3" fill="none" stroke-linecap="round"/></svg>
       <p style="margin-top:1.2rem;font-size:1rem;color:var(--brown-mid);max-width:600px">${t('res_intro')}</p>
     </div>
+    <section class="resource-playground" aria-labelledby="resources-playground-title">
+      <div class="resource-playground__copy">
+        <span class="eyebrow">${t('res_play_eyebrow')}</span>
+        <h3 id="resources-playground-title" class="resource-playground__title">Finding Our Voice <span>Playground</span></h3>
+        <p class="resource-playground__body">${t('res_play_body')}</p>
+        <ul class="resource-playground__details"><li>${t('res_play_count')}</li><li>${t('res_play_pace')}</li><li>${t('res_play_privacy')}</li></ul>
+        <a href="playground.html" class="btn-pill">${t('res_play_open')} <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="resource-playground__art" aria-hidden="true">${svgBubble}<div class="resource-playground__star">${svgStar}</div></div>
+    </section>
     <div class="resource-grid">${cards}</div>
   </div>
 </section>
